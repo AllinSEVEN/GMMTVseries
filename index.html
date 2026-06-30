@@ -3,1290 +3,611 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GMMTV Series Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>ทายซีรีส์ GMMTV จาก Emoji</title>
 <style>
-:root {
-  --bg: #080810;
-  --bg2: #0f0f1a;
-  --bg3: #141422;
-  --surface: #1a1a2e;
-  --surface2: #20203a;
-  --border: rgba(255,255,255,0.06);
-  --border2: rgba(255,255,255,0.12);
-  --text: #e4e4f0;
-  --text2: #9090b8;
-  --text3: #5a5a80;
-  --accent: #a78bfa;
-  --accent2: #f472b6;
-  --gold: #fbbf24;
-  --teal: #34d399;
-  --blue: #60a5fa;
-  --red: #f87171;
-  --orange: #fb923c;
-  --green: #4ade80;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans Thai',sans-serif;font-size:14px;line-height:1.6;overflow-x:hidden}
+  :root{
+    --bg1:#0b1f4d;
+    --bg2:#123a8c;
+    --card:#173f99;
+    --card2:#0e2c75;
+    --accent:#00c2ff;
+    --accent2:#3b8bff;
+    --green:#19e08a;
+    --green-dark:#0fb56f;
+    --text:#f4f8ff;
+    --text-dim:#aecbff;
+    --plate:#1f4fae;
+    --plate-soft:#2c5fc7;
+    --glow:0 0 18px rgba(0,194,255,.45);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:'Segoe UI', 'Sarabun', Tahoma, sans-serif;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(0,194,255,.25), transparent 45%),
+      radial-gradient(circle at 100% 100%, rgba(59,139,255,.25), transparent 45%),
+      linear-gradient(160deg, var(--bg1), var(--bg2));
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding:20px;
+  }
 
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--surface2);border-radius:3px}
+  .slide{
+    width:920px;
+    max-width:96vw;
+    aspect-ratio:16/9;
+    background:linear-gradient(165deg, var(--card), var(--card2));
+    border-radius:28px;
+    box-shadow:0 24px 70px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.08), var(--glow);
+    padding:26px 34px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .slide::before{
+    content:'';
+    position:absolute;
+    top:-80px; right:-80px;
+    width:220px; height:220px;
+    background:radial-gradient(circle, rgba(0,194,255,.3), transparent 70%);
+    pointer-events:none;
+  }
 
-/* ── GLOW ── */
-.glow{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;animation:glowPulse 8s ease-in-out infinite}
-.glow.a{width:600px;height:600px;background:rgba(167,139,250,0.07);top:-200px;right:-150px}
-.glow.b{width:500px;height:500px;background:rgba(52,211,153,0.05);bottom:100px;left:-200px;animation-delay:4s}
-@keyframes glowPulse{0%,100%{opacity:.6}50%{opacity:1}}
+  /* ===== header ===== */
+  .top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    z-index:1;
+    position:relative;
+  }
+  .game-title{
+    font-size:20px;
+    font-weight:800;
+    letter-spacing:.5px;
+  }
+  .mode-row{
+    display:flex;
+    gap:8px;
+    margin-top:8px;
+  }
+  .mode-btn{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    color:var(--text-dim);
+    font-size:11px;
+    font-weight:700;
+    padding:5px 12px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.2s;
+  }
+  .mode-btn:hover{ background:rgba(255,255,255,.14); }
+  .mode-btn.active{
+    background:linear-gradient(135deg, var(--accent), var(--accent2));
+    color:#06204f;
+    border-color:transparent;
+    box-shadow:0 4px 12px rgba(0,194,255,.4);
+  }
 
-/* ── NAV ── */
-nav{position:sticky;top:0;z-index:100;background:rgba(8,8,16,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 2rem}
-.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:0;height:54px}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.1em;color:var(--accent);margin-right:2rem;flex-shrink:0}
-.nav-tabs{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;flex:1}
-.nav-tabs::-webkit-scrollbar{display:none}
-.tab-btn{padding:0 16px;height:54px;background:none;border:none;color:var(--text3);font-family:'Noto Sans Thai',sans-serif;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;display:flex;align-items:center;gap:6px}
-.tab-btn:hover{color:var(--text)}
-.tab-btn.active{color:var(--text);border-bottom-color:var(--accent)}
-.tab-btn .dot{width:6px;height:6px;border-radius:50%}
-.year-badge{margin-left:auto;font-size:11px;color:var(--text3);padding:0 12px;flex-shrink:0}
+  .timer-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+  }
+  .timer{
+    width:54px;height:54px;
+    border-radius:50%;
+    background:#0a1c4d;
+    display:flex;align-items:center;justify-content:center;
+    font-size:17px;font-weight:800;
+    color:var(--accent);
+    box-shadow:0 0 0 3px rgba(0,194,255,.35), 0 0 14px rgba(0,194,255,.3);
+  }
+  .timer.low{ color:#ff5c7a; box-shadow:0 0 0 3px rgba(255,92,122,.35), 0 0 14px rgba(255,92,122,.3);}
+  .pause-btn{
+    width:34px;height:24px;
+    border-radius:8px;
+    background:rgba(255,255,255,.12);
+    border:none;
+    color:var(--text);
+    font-size:13px;
+    letter-spacing:2px;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .pause-btn:hover{background:rgba(255,255,255,.22);}
 
-/* ── HERO ── */
-.hero{padding:4rem 2rem 3rem;max-width:1400px;margin:0 auto;position:relative;z-index:1}
-.hero-top{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:2rem}
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,7rem);letter-spacing:.05em;line-height:1;background:linear-gradient(135deg,#fff 0%,var(--accent) 50%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:13px;color:var(--text2);margin-top:.5rem;font-weight:300}
-.hero-stats{display:flex;gap:2rem;flex-shrink:0}
-.hstat{text-align:right}
-.hstat .n{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;line-height:1;color:var(--text)}
-.hstat .l{font-size:11px;color:var(--text3);margin-top:2px;letter-spacing:.05em}
+  /* ===== body: two columns ===== */
+  .body-row{
+    flex:1;
+    display:flex;
+    gap:28px;
+    margin-top:16px;
+    z-index:1;
+    position:relative;
+  }
 
-/* ── SECTION ── */
-.section{max-width:1400px;margin:0 auto;padding:0 2rem 3rem;position:relative;z-index:1}
-.sec-header{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
-.sec-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.sec-header h2{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.08em;color:var(--text)}
-.sec-header .yr{font-size:11px;color:var(--text3);background:var(--surface);padding:3px 10px;border-radius:99px;border:1px solid var(--border2)}
-.sec-header .cnt{margin-left:auto;font-size:12px;color:var(--text2)}
+  .left-col{
+    flex:1.1;
+    background:linear-gradient(160deg, var(--plate-soft), var(--plate));
+    border-radius:20px;
+    padding:18px 16px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 8px 20px rgba(0,0,0,.2);
+  }
+  .emoji-row{
+    font-size:54px;
+    letter-spacing:14px;
+    filter:drop-shadow(0 4px 10px rgba(0,0,0,.3));
+  }
+  .hint-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-top:20px;
+  }
+  .hint-slot{
+    width:78px;height:58px;
+    border-radius:14px;
+    background:var(--card2);
+    display:flex;align-items:center;justify-content:center;
+    font-size:28px;
+    position:relative;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.1);
+    transition:.4s;
+    overflow:hidden;
+  }
+  .hint-slot .ghost-letter{
+    position:absolute;
+    font-size:24px;
+    font-weight:800;
+    color:rgba(255,255,255,.18);
+  }
+  .hint-slot .emoji-content{
+    opacity:0;
+    transform:scale(.5);
+    transition:.4s;
+  }
+  .hint-slot.revealed{
+    background:linear-gradient(160deg, var(--plate-soft), var(--plate));
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.18), 0 0 14px rgba(0,194,255,.25);
+  }
+  .hint-slot.revealed .ghost-letter{opacity:0;}
+  .hint-slot.revealed .emoji-content{opacity:1; transform:scale(1);}
 
-/* ── SERIES GRID ── */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
-.grid.wide{grid-template-columns:repeat(auto-fill,minmax(360px,1fr))}
+  .hint-btn{
+    background:linear-gradient(135deg, var(--accent), var(--accent2));
+    border:none;
+    color:#06204f;
+    font-size:13px;
+    font-weight:800;
+    padding:11px 16px;
+    border-radius:14px;
+    cursor:pointer;
+    box-shadow:0 6px 16px rgba(0,194,255,.45);
+    white-space:nowrap;
+    transition:.2s;
+  }
+  .hint-btn:disabled{ opacity:.4; cursor:default; box-shadow:none; }
+  .hint-btn:not(:disabled):hover{ transform:translateY(-1px) scale(1.03); }
 
-/* ── SERIES CARD ── */
-.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;animation:fadeUp .5s ease both}
-.card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  .right-col{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:14px;
+  }
 
-/* stagger */
-.card:nth-child(1){animation-delay:.04s}.card:nth-child(2){animation-delay:.08s}.card:nth-child(3){animation-delay:.12s}
-.card:nth-child(4){animation-delay:.16s}.card:nth-child(5){animation-delay:.20s}.card:nth-child(6){animation-delay:.24s}
-.card:nth-child(7){animation-delay:.28s}.card:nth-child(8){animation-delay:.32s}.card:nth-child(9){animation-delay:.36s}
-.card:nth-child(n+10){animation-delay:.40s}
+  .name-plate{
+    background:linear-gradient(160deg, var(--plate-soft), var(--plate));
+    border-radius:18px;
+    padding:20px 18px;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.1);
+    transition:.3s;
+  }
+  .name-plate:hover{ box-shadow: inset 0 0 0 1px rgba(255,255,255,.2), 0 0 16px rgba(0,194,255,.3); }
+  .name-plate .ghost{
+    font-size:12px;
+    letter-spacing:3px;
+    color:rgba(255,255,255,.25);
+    text-transform:uppercase;
+    font-weight:700;
+  }
+  .name-plate .thai-name{
+    font-size:24px;
+    font-weight:800;
+    margin-top:8px;
+    opacity:0;
+    transition:.3s;
+  }
+  .name-plate .eng-name{
+    font-size:13px;
+    color:var(--text-dim);
+    margin-top:4px;
+    opacity:0;
+    transition:.3s;
+  }
+  .name-plate.revealed{ box-shadow: inset 0 0 0 1px rgba(255,255,255,.2), 0 0 20px rgba(0,194,255,.35); }
+  .name-plate.revealed .ghost{opacity:0; height:0; overflow:hidden;}
+  .name-plate.revealed .thai-name,
+  .name-plate.revealed .eng-name{opacity:1;}
+  .name-plate .tap-hint{
+    font-size:10px;
+    color:var(--text-dim);
+    margin-top:10px;
+    opacity:.7;
+  }
+  .name-plate.revealed .tap-hint{display:none;}
 
-.card-media{position:relative;aspect-ratio:2/3;background:var(--bg3);overflow:hidden;max-height:200px}
-.card-media img{width:100%;height:100%;object-fit:cover;transition:transform .4s;display:block}
-.card:hover .card-media img{transform:scale(1.04)}
-.card-media-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;background:linear-gradient(135deg,var(--surface) 0%,var(--bg3) 100%)}
-.card-media-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,20,.95) 0%,transparent 50%)}
-.card-media-badge{position:absolute;top:10px;left:10px}
-.card-media-ep{position:absolute;bottom:10px;right:10px;font-size:11px;color:rgba(255,255,255,.7);background:rgba(0,0,0,.5);padding:2px 8px;border-radius:99px}
-.card-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
-.card:hover .card-play{opacity:1}
-.play-icon{width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:14px solid white;margin-left:3px}
+  .actors-block{ text-align:center; }
+  .actors-label{
+    font-size:10px;
+    color:var(--text-dim);
+    letter-spacing:1px;
+    opacity:.6;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .actors{
+    font-size:13px;
+    color:var(--text-dim);
+    line-height:1.5;
+    padding:0 6px;
+    filter:blur(5px);
+    opacity:.5;
+    transition:filter .4s, opacity .4s;
+    user-select:none;
+  }
+  .actors.revealed{ filter:blur(0); opacity:1; user-select:text; }
 
-.card-body{padding:1rem 1.1rem 1.1rem}
-.card-title{font-size:14px;font-weight:600;color:var(--text);line-height:1.35;margin-bottom:.5rem}
-.card-story{font-size:12px;color:var(--text2);line-height:1.55;margin-bottom:.75rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  /* ===== footer ===== */
+  .bottom-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:18px;
+    z-index:1;
+    position:relative;
+  }
+  .letter-tag{
+    font-size:22px;
+    font-weight:800;
+    color:var(--text-dim);
+    opacity:.6;
+  }
+  .progress-dots{ display:flex; gap:6px; }
+  .progress-dots span{
+    width:7px;height:7px;border-radius:50%;
+    background:rgba(255,255,255,.25);
+    transition:.3s;
+  }
+  .progress-dots span.active{ background:var(--accent); box-shadow:0 0 10px var(--accent); }
 
-.cast-section{margin-bottom:.75rem}
-.cast-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.4rem}
-.cast-list{display:flex;flex-wrap:wrap;gap:4px}
-.cast-pill{font-size:11px;padding:2px 8px;border-radius:99px;border:1px solid var(--border2);color:var(--text2);background:var(--bg3);white-space:nowrap;transition:background .15s,color .15s}
-.cast-pill.lead{background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.25);color:var(--accent)}
+  .next-btn{
+    width:54px;height:54px;
+    border-radius:16px;
+    background:linear-gradient(135deg, var(--green), var(--green-dark));
+    border:none;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    box-shadow:0 8px 18px rgba(25,224,138,.45);
+    transition:.2s;
+  }
+  .next-btn:hover{ transform:translateX(3px) scale(1.05); }
+  .next-btn svg{ width:24px; height:24px; }
 
-.card-footer{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:.7rem;margin-top:.7rem}
-.meta-chip{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text3)}
-
-.platform-links{display:flex;gap:6px;margin-left:auto}
-.plat-btn{font-size:10px;padding:3px 8px;border-radius:6px;border:1px solid var(--border2);color:var(--text3);background:var(--bg3);text-decoration:none;transition:all .15s;cursor:pointer}
-.plat-btn:hover{border-color:var(--accent);color:var(--accent)}
-
-/* ── PROGRESS ── */
-.prog-wrap{margin:.6rem 0 .2rem}
-.prog-head{display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:4px}
-.prog-track{height:3px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden}
-.prog-fill{height:100%;border-radius:99px;transition:width .8s ease}
-
-/* ── BADGE ── */
-.badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:3px 9px;border-radius:99px;letter-spacing:.03em;white-space:nowrap}
-.badge.on{background:rgba(74,222,128,.12);color:var(--green);border:1px solid rgba(74,222,128,.25)}
-.badge.near{background:rgba(251,146,60,.12);color:var(--orange);border:1px solid rgba(251,146,60,.25)}
-.badge.open{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
-.badge.read{background:rgba(167,139,250,.1);color:var(--accent);border:1px solid rgba(167,139,250,.2)}
-.badge.pre{background:rgba(251,191,36,.08);color:var(--gold);border:1px solid rgba(251,191,36,.18)}
-.badge.done{background:rgba(113,113,160,.1);color:var(--text3);border:1px solid rgba(113,113,160,.2)}
-.badge.y24{background:rgba(244,114,182,.08);color:var(--accent2);border:1px solid rgba(244,114,182,.18)}
-.badge.y25{background:rgba(52,211,153,.08);color:var(--teal);border:1px solid rgba(52,211,153,.18)}
-.badge::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
-
-/* ── CAST SECTION ── */
-.cast-page{max-width:1400px;margin:0 auto;padding:0 2rem 4rem;position:relative;z-index:1}
-.cast-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
-.cast-chip{border-radius:10px;padding:.6rem .75rem;border:1px solid var(--border);font-size:12px;font-weight:500;color:var(--text);cursor:default;transition:border-color .15s}
-.cast-chip:hover{border-color:var(--border2)}
-.cast-chip .name{line-height:1.3;margin-bottom:3px}
-.cast-chip .series-list-sm{font-size:10px;color:var(--text3);line-height:1.4}
-.cast-chip.has-series{background:var(--surface);border-color:var(--border2)}
-.cast-chip.no-series{background:rgba(255,255,255,.02);border-color:var(--border);opacity:.6}
-
-/* ── MODAL ── */
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem;animation:fadeIn .2s ease}
-.modal-bg.hidden{display:none}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:20px;max-width:700px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:slideUp .25s ease}
-@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.modal-close{position:sticky;top:0;float:right;margin:1rem 1rem 0 0;width:32px;height:32px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);color:var(--text2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;flex-shrink:0;transition:background .15s}
-.modal-close:hover{background:var(--surface)}
-.modal-hero{width:100%;height:260px;object-fit:cover;border-radius:18px 18px 0 0;background:var(--surface)}
-.modal-body{padding:1.5rem 1.75rem 2rem;clear:both}
-.modal-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:1.25rem;flex-wrap:wrap}
-.modal-title{font-family:'Noto Serif Thai',serif;font-size:1.4rem;font-weight:700;color:var(--text);line-height:1.3;flex:1}
-.modal-story{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:1.25rem}
-.modal-section{margin-bottom:1.25rem}
-.modal-sec-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.6rem}
-.modal-cast-list{display:flex;flex-wrap:wrap;gap:5px}
-.modal-meta-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.modal-meta-item{background:var(--surface);border-radius:8px;padding:.5rem .75rem;font-size:12px}
-.modal-meta-item .k{color:var(--text3);font-size:10px;margin-bottom:2px}
-.modal-meta-item .v{color:var(--text);font-weight:500}
-.modal-platforms{display:flex;gap:8px;flex-wrap:wrap}
-.modal-plat{padding:8px 16px;border-radius:8px;border:1px solid var(--border2);background:var(--surface);color:var(--text2);font-size:12px;cursor:pointer;text-decoration:none;transition:all .15s;display:flex;align-items:center;gap:6px}
-.modal-plat:hover{border-color:var(--accent);color:var(--accent);background:rgba(167,139,250,.06)}
-.video-embed{width:100%;aspect-ratio:16/9;border-radius:10px;background:var(--bg3);border:1px solid var(--border);overflow:hidden;margin-bottom:.75rem}
-.video-embed iframe{width:100%;height:100%;border:none}
-
-/* ── DIVIDER ── */
-.yr-divider{max-width:1400px;margin:0 auto 2rem;padding:0 2rem;position:relative;z-index:1}
-.yr-label{display:inline-flex;align-items:center;gap:10px;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.15em;color:var(--text3)}
-.yr-label::after{content:'';flex:1;height:1px;background:var(--border);display:none}
-.yr-line{height:1px;background:var(--border);margin-top:.5rem}
-
-/* ── FILTER BAR ── */
-.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem}
-.f-btn{padding:5px 14px;border-radius:99px;border:1px solid var(--border2);background:transparent;color:var(--text2);font-family:'Noto Sans Thai',sans-serif;font-size:11px;cursor:pointer;transition:all .18s;white-space:nowrap}
-.f-btn:hover{color:var(--text);border-color:rgba(255,255,255,.2)}
-.f-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
-
-/* ── HIDDEN ── */
-.hidden{display:none!important}
+  @media (max-width:720px){
+    .slide{ aspect-ratio:auto; padding:18px; }
+    .body-row{ flex-direction:column; }
+  }
 </style>
 </head>
 <body>
 
-<div class="glow a"></div>
-<div class="glow b"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <div class="nav-logo">GMMTV</div>
-    <div class="nav-tabs">
-      <button class="tab-btn active" onclick="showTab('all')"><span class="dot" style="background:var(--accent)"></span>ทั้งหมด</button>
-      <button class="tab-btn" onclick="showTab('2026')"><span class="dot" style="background:var(--teal)"></span>2026</button>
-      <button class="tab-btn" onclick="showTab('2025')"><span class="dot" style="background:var(--blue)"></span>2025</button>
-      <button class="tab-btn" onclick="showTab('2024')"><span class="dot" style="background:var(--accent2)"></span>2024</button>
-      <button class="tab-btn" onclick="showTab('cast')"><span class="dot" style="background:var(--gold)"></span>นักแสดง</button>
-    </div>
-    <div class="year-badge">Series Hub 2026</div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="hero" id="tab-all">
-  <div class="hero-top">
+<div class="slide" id="slide">
+  <div class="top-bar">
     <div>
-      <div class="hero-title">SERIES<br>TRACKER</div>
-      <div class="hero-sub">GMMTV · ซีรีส์ทั้งหมด 2024–2026 · อัปเดต Q2/2026</div>
+      <div class="game-title">ทายซีรีส์ GMMTV จาก Emoji</div>
+      <div class="mode-row" id="modeRow">
+        <button class="mode-btn" data-time="60">60 วิ</button>
+        <button class="mode-btn" data-time="30">30 วิ</button>
+        <button class="mode-btn" data-time="10">10 วิ</button>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div class="hstat"><div class="n">38</div><div class="l">ซีรีส์</div></div>
-      <div class="hstat"><div class="n" style="color:var(--green)">4</div><div class="l">ออนแอร์</div></div>
-      <div class="hstat"><div class="n" style="color:var(--blue)">9</div><div class="l">เปิดกอง</div></div>
-      <div class="hstat"><div class="n" style="color:var(--gold)">21</div><div class="l">preprod</div></div>
+    <div class="timer-wrap">
+      <div class="timer" id="timer">60</div>
+      <button class="pause-btn" id="pauseBtn">❚❚</button>
+    </div>
+  </div>
+
+  <div class="body-row">
+    <div class="left-col">
+      <div class="emoji-row" id="mainEmoji"></div>
+      <div class="hint-row">
+        <div class="hint-slot" id="slotA">
+          <span class="ghost-letter">A</span>
+          <span class="emoji-content" id="emojiA"></span>
+        </div>
+        <button class="hint-btn" id="hintBtn">💡 ใบ้</button>
+        <div class="hint-slot" id="slotB">
+          <span class="ghost-letter">B</span>
+          <span class="emoji-content" id="emojiB"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-col">
+      <div class="name-plate" id="namePlate">
+        <div class="ghost">Series Name</div>
+        <div class="thai-name" id="thaiName"></div>
+        <div class="eng-name" id="engName"></div>
+        <div class="tap-hint">แตะเพื่อเฉลย</div>
+      </div>
+      <div class="actors-block">
+        <div class="actors-label">นักแสดงหลัก / รอง</div>
+        <div class="actors" id="actors"></div>
+      </div>
     </div>
   </div>
 
-  <!-- FILTER -->
-  <div class="filter-bar">
-    <button class="f-btn active" onclick="filterAll('all',this)">ทั้งหมด</button>
-    <button class="f-btn" onclick="filterAll('on',this)">🟢 ออนแอร์</button>
-    <button class="f-btn" onclick="filterAll('open',this)">🔵 เปิดกอง</button>
-    <button class="f-btn" onclick="filterAll('read',this)">🟣 อ่านบท</button>
-    <button class="f-btn" onclick="filterAll('pre',this)">🟡 Pre-prod</button>
-    <button class="f-btn" onclick="filterAll('done',this)">⚪ จบแล้ว</button>
-  </div>
-</div>
-
-<!-- ════ 2024 ════ -->
-<div class="yr-divider"><div class="yr-label">● GMMTV 2024</div><div class="yr-line"></div></div>
-<div class="section" id="sec-2024">
-  <div class="sec-header">
-    <div class="sec-dot" style="background:var(--accent2)"></div>
-    <h2>2024</h2>
-    <span class="yr">ปี 2024</span>
-    <span class="cnt">1 เรื่อง</span>
-  </div>
-  <div class="grid" id="grid-2024">
-
-    <div class="card" data-status="open" onclick="openModal('scarlet')">
-      <div class="card-media" style="max-height:160px">
-        <div class="card-media-placeholder">🏯</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge open">เปิดกอง</span></div>
-        <div class="card-media-ep">0/18 ep</div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Scarlet Heart TH</div>
-        <div class="card-story">ย้อนเวลาสู่ยุคโบราณ ความรักและการเมืองในราชสำนัก ดัดแปลงจากซีรีส์จีนชื่อดัง</div>
-        <div class="cast-section">
-          <div class="cast-label">นักแสดงหลัก</div>
-          <div class="cast-list">
-            <span class="cast-pill lead">Win</span><span class="cast-pill lead">Nanon</span><span class="cast-pill lead">Phuwin</span>
-            <span class="cast-pill lead">Force</span><span class="cast-pill lead">Tay</span><span class="cast-pill lead">Fourth</span>
-            <span class="cast-pill lead">Perth</span><span class="cast-pill lead">Tu</span>
-            <span class="cast-pill">อ้าย</span><span class="cast-pill">พรีม</span><span class="cast-pill">มิ้ลค์</span><span class="cast-pill">ป่านพีท</span><span class="cast-pill">ไซซี</span>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="meta-chip">📅 ออน ส.ค.–ก.ย. 2025</span>
-          <div class="platform-links">
-            <span class="plat-btn">GMMTV+</span><span class="plat-btn">YouTube</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ════ 2025 ════ -->
-<div class="yr-divider"><div class="yr-label">● GMMTV 2025</div><div class="yr-line"></div></div>
-<div class="section" id="sec-2025">
-  <div class="sec-header">
-    <div class="sec-dot" style="background:var(--teal)"></div>
-    <h2>2025</h2>
-    <span class="yr">จบแล้ว / ออนอยู่</span>
-    <span class="cnt">4 เรื่อง</span>
-  </div>
-  <div class="grid" id="grid-2025">
-
-    <div class="card" data-status="done" onclick="openModal('girlrules')">
-      <div class="card-media" style="max-height:160px">
-        <div class="card-media-placeholder">👯‍♀️</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge done">จบแล้ว</span></div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Girl Rules</div>
-        <div class="card-story">กฎของผู้หญิง · Girl Power · ดราม่าคอมเมดี้</div>
-        <div class="cast-section">
-          <div class="cast-label">นักแสดงหลัก</div>
-          <div class="cast-list">
-            <span class="cast-pill lead">บุ๋น</span><span class="cast-pill lead">เปรม</span>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="meta-chip">🏁 จบ 29 มิ.ย.</span>
-          <div class="platform-links"><span class="plat-btn">GMMTV+</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" data-status="on" onclick="openModal('wu')">
-      <div class="card-media" style="max-height:160px">
-        <div class="card-media-placeholder">⚔️</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge on">ออนอยู่</span></div>
-        <div class="card-media-ep">5/9 ep</div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Wu</div>
-        <div class="card-story">นักสู้ผู้มีพลังพิเศษ · แอ็กชันแฟนตาซี</div>
-        <div class="cast-section">
-          <div class="cast-label">นักแสดงหลัก</div>
-          <div class="cast-list">
-            <span class="cast-pill lead">สกาย</span><span class="cast-pill lead">นานิ</span>
-          </div>
-        </div>
-        <div class="prog-wrap">
-          <div class="prog-head"><span>ความคืบหน้า</span><span>5/9 ตอน</span></div>
-          <div class="prog-track"><div class="prog-fill" style="width:56%;background:var(--green)"></div></div>
-        </div>
-        <div class="card-footer">
-          <span class="meta-chip">📅 อังคาร</span>
-          <span class="meta-chip">🏁 จบ 30 มิ.ย.</span>
-          <div class="platform-links"><span class="plat-btn">GMMTV+</span><span class="plat-btn">YouTube</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" data-status="on" onclick="openModal('ticket')">
-      <div class="card-media" style="max-height:160px">
-        <div class="card-media-placeholder">🎫</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge on">ออนอยู่</span></div>
-        <div class="card-media-ep">2/6 ep</div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Ticket to Heaven</div>
-        <div class="card-story">ตั๋วสู่สวรรค์ · ดราม่าแฟนตาซี</div>
-        <div class="cast-section">
-          <div class="cast-label">นักแสดงหลัก</div>
-          <div class="cast-list">
-            <span class="cast-pill lead">เจมีไนน์</span><span class="cast-pill lead">โฟร์ท</span>
-          </div>
-        </div>
-        <div class="prog-wrap">
-          <div class="prog-head"><span>ความคืบหน้า</span><span>2/6 ตอน</span></div>
-          <div class="prog-track"><div class="prog-fill" style="width:33%;background:var(--green)"></div></div>
-        </div>
-        <div class="card-footer">
-          <span class="meta-chip">📅 เสาร์</span>
-          <span class="meta-chip">🏁 จบ 29 ก.ค.</span>
-          <div class="platform-links"><span class="plat-btn">GMMTV+</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" data-status="on" onclick="openModal('dog')">
-      <div class="card-media" style="max-height:160px">
-        <div class="card-media-placeholder">✈️</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge on">ออนอยู่</span></div>
-        <div class="card-media-ep">2/10 ep</div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">หมาเห่าเครื่องบิน</div>
-        <div class="card-story">ชายหนุ่มหัวแข็งกับนักบิน · คอมเมดี้โรแมนติก</div>
-        <div class="cast-section">
-          <div class="cast-label">นักแสดงหลัก</div>
-          <div class="cast-list">
-            <span class="cast-pill lead">เต</span><span class="cast-pill lead">นิว</span>
-            <span class="cast-pill">กระปุก</span><span class="cast-pill">ไซซี</span><span class="cast-pill">จุง</span><span class="cast-pill">ดัง</span>
-          </div>
-        </div>
-        <div class="prog-wrap">
-          <div class="prog-head"><span>ความคืบหน้า</span><span>2/10 ตอน</span></div>
-          <div class="prog-track"><div class="prog-fill" style="width:20%;background:var(--green)"></div></div>
-        </div>
-        <div class="card-footer">
-          <span class="meta-chip">📅 ศุกร์</span>
-          <span class="meta-chip">🏁 จบ 2 ก.ค.</span>
-          <div class="platform-links"><span class="plat-btn">GMMTV+</span></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ════ 2026 — ON AIR ════ -->
-<div class="yr-divider"><div class="yr-label">● GMMTV 2026</div><div class="yr-line"></div></div>
-<div class="section" id="sec-2026-on">
-  <div class="sec-header">
-    <div class="sec-dot" style="background:var(--green)"></div>
-    <h2>ออนแอร์</h2>
-    <span class="yr">2026</span>
-    <span class="cnt">2 เรื่อง</span>
-  </div>
-  <div class="grid" id="grid-on26">
-
-    <div class="card" data-status="on" onclick="openModal('lun')">
-      <div class="card-media" style="max-height:160px">
-        <div class="card-media-placeholder">🍷</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge on">ออนอยู่</span></div>
-        <div class="card-media-ep">6/10 ep</div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">ลัลน์ไม่ชอบไวน์</div>
-        <div class="card-story">หญิงสาวที่ไม่ชอบไวน์ได้พบกับหนุ่มนักชิมไวน์ · โรแมนติกคอมเมดี้</div>
-        <div class="cast-section">
-          <div class="cast-label">นักแสดงหลัก</div>
-          <div class="cast-list">
-            <span class="cast-pill lead">แจน</span><span class="cast-pill lead">จิงจิง</span>
-          </div>
-        </div>
-        <div class="prog-wrap">
-          <div class="prog-head"><span>ความคืบหน้า</span><span>6/10 ตอน (60%)</span></div>
-          <div class="prog-track"><div class="prog-fill" style="width:60%;background:var(--green)"></div></div>
-        </div>
-        <div class="card-footer">
-          <span class="meta-chip">📅 อาทิตย์</span>
-          <span class="meta-chip">🏁 จบ 31 ก.ค.</span>
-          <div class="platform-links"><span class="plat-btn">GMMTV+</span><span class="plat-btn">YouTube</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" data-status="on" onclick="openModal('wof')">
-      <div class="card-media" style="max-height:160px">
-        <div class="card-media-placeholder">🍊</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge on">ออนอยู่</span></div>
-        <div class="card-media-ep">4/12 ep</div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">When Orange Fall</div>
-        <div class="card-story">เมื่อส้มหล่น ความรักที่ไม่คาดฝันก็เริ่มต้นขึ้น · โรแมนติกดราม่า</div>
-        <div class="cast-section">
-          <div class="cast-label">นักแสดงหลัก</div>
-          <div class="cast-list">
-            <span class="cast-pill lead">อัลมอน</span><span class="cast-pill lead">โปรเกรส</span>
-            <span class="cast-pill">จิมมี่</span><span class="cast-pill">ซี</span>
-          </div>
-        </div>
-        <div class="prog-wrap">
-          <div class="prog-head"><span>ความคืบหน้า</span><span>4/12 ตอน (33%)</span></div>
-          <div class="prog-track"><div class="prog-fill" style="width:33%;background:var(--green)"></div></div>
-        </div>
-        <div class="card-footer">
-          <span class="meta-chip">📅 พุธ</span>
-          <span class="meta-chip">🏁 จบ 4 ก.ค.</span>
-          <div class="platform-links"><span class="plat-btn">GMMTV+</span><span class="plat-btn">YouTube</span></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- 2026 — เปิดกอง -->
-<div class="section" id="sec-2026-open">
-  <div class="sec-header">
-    <div class="sec-dot" style="background:var(--blue)"></div>
-    <h2>เปิดกอง</h2>
-    <span class="yr">2026</span>
-    <span class="cnt">9 เรื่อง</span>
-  </div>
-  <div class="grid wide" id="grid-open26">
-
-    <div class="card" data-status="open" onclick="openModal('match')">
-      <div class="card-media" style="max-height:130px">
-        <div class="card-media-placeholder">🎾</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge open">เปิดกอง</span></div>
-        <div class="card-media-ep">6/10 ep</div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Match Point</div>
-        <div class="card-story">ตีเทนนิสคู่ สู้กัน · กีฬาโรแมนติก</div>
-        <div class="cast-section"><div class="cast-label">นักแสดงหลัก</div><div class="cast-list">
-          <span class="cast-pill lead">เตโช</span><span class="cast-pill lead">ปิง</span><span class="cast-pill lead">ซิง</span><span class="cast-pill lead">ชิม่อน</span>
-          <span class="cast-pill">อาร์ม</span><span class="cast-pill">จาว่า</span><span class="cast-pill">ฟรัง</span><span class="cast-pill">ตาต้า</span>
-        </div></div>
-        <div class="card-footer"><span class="meta-chip">📅 อาทิตย์</span><span class="meta-chip">🏁 จบ 5 ก.ค.</span></div>
-      </div>
-    </div>
-
-    <div class="card" data-status="open" onclick="openModal('peach')">
-      <div class="card-media" style="max-height:130px">
-        <div class="card-media-placeholder">🍑</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge open">เปิดกอง</span></div>
-        <div class="card-media-ep">2/10 ep</div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">มีสติแล้วลูกพีช Peach and Me</div>
-        <div class="card-story">ภาคต่อคุณธีร์ · โรแมนติกคอมเมดี้</div>
-        <div class="cast-section"><div class="cast-label">นักแสดงหลัก</div><div class="cast-list">
-          <span class="cast-pill lead">วิลเลี่ยม</span><span class="cast-pill lead">เอส</span>
-          <span class="cast-pill">PP</span><span class="cast-pill">WE</span><span class="cast-pill">PS</span><span class="cast-pill">บอนนี่</span>
-        </div></div>
-        <div class="card-footer"><span class="meta-chip">📅 ศุกร์</span><span class="meta-chip">🏁 จบ 30 ก.ค.</span></div>
-      </div>
-    </div>
-
-    <div class="card" data-status="open" onclick="openModal('youmaniac')">
-      <div class="card-media" style="max-height:130px">
-        <div class="card-media-placeholder">😈</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge open">เปิดกอง</span></div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">You Maniac เดี๋ยวจะรักซะให้บ้า</div>
-        <div class="card-story">รับหมดกับเย็นชา · โรแมนติกแอ็กชัน</div>
-        <div class="cast-section"><div class="cast-label">นักแสดงหลัก</div><div class="cast-list">
-          <span class="cast-pill lead">WE</span><span class="cast-pill lead">บาร์โค้ด</span><span class="cast-pill lead">คิน</span>
-          <span class="cast-pill">สแตมป์</span><span class="cast-pill">อั๋น</span><span class="cast-pill">อั่งเปา</span>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="card" data-status="open" onclick="openModal('saimu')">
-      <div class="card-media" style="max-height:130px">
-        <div class="card-media-placeholder">🔮</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge open">เปิดกอง</span></div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">จุดจีบสายมู</div>
-        <div class="card-story">สาปผิดคน สดใส · โรแมนติกคอมเมดี้</div>
-        <div class="cast-section"><div class="cast-label">นักแสดงหลัก</div><div class="cast-list">
-          <span class="cast-pill lead">ธรรม</span><span class="cast-pill lead">แมค</span>
-          <span class="cast-pill">สแตมป์</span><span class="cast-pill">อั๋น</span><span class="cast-pill">พอล</span><span class="cast-pill">จูโน่</span><span class="cast-pill">พรีมเต้น</span>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="card" data-status="open" onclick="openModal('mrkill')">
-      <div class="card-media" style="max-height:130px">
-        <div class="card-media-placeholder">🎨</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge open">เปิดกอง</span></div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">มังงะสั่งตาย Mr.Kill</div>
-        <div class="card-story">ลายเส้นคดีฆาตกรรม รักกันได้ยังไง มิตรภาพ</div>
-        <div class="cast-section"><div class="cast-label">นักแสดงหลัก</div><div class="cast-list">
-          <span class="cast-pill lead">จอส</span><span class="cast-pill lead">กวิน</span>
-          <span class="cast-pill">ดิว</span><span class="cast-pill">ธี</span><span class="cast-pill">สิงหะ</span><span class="cast-pill">นีโอ</span><span class="cast-pill">มาตา</span>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="card" data-status="open" onclick="openModal('oxy')">
-      <div class="card-media" style="max-height:130px">
-        <div class="card-media-placeholder">💊</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge open">เปิดกอง</span></div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Oxytoxin จุนใจ ไอดาว</div>
-        <div class="card-story">คนเริ่ดทั้ง 5 · เพื่อนกลุ่มดาวดราม่า</div>
-        <div class="cast-section"><div class="cast-label">นักแสดงหลัก</div><div class="cast-list">
-          <span class="cast-pill lead">ว่ายฟ้า</span><span class="cast-pill lead">ต้นข้าว</span>
-          <span class="cast-pill">เบนซ์</span><span class="cast-pill">โยเกิร์ต</span><span class="cast-pill">แป้ง</span>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="card" data-status="open" onclick="openModal('weirdo')">
-      <div class="card-media" style="max-height:130px">
-        <div class="card-media-placeholder">🎓</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge open">เปิดกอง</span></div>
-        <div class="card-media-ep">0/10 ep</div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">Weirdo 101</div>
-        <div class="card-story">นักเรียนแปลกประหลาด 101 · คอมเมดี้วัยรุ่น</div>
-        <div class="cast-section"><div class="cast-label">นักแสดงหลัก</div><div class="cast-list">
-          <span class="cast-pill lead">ซี</span><span class="cast-pill lead">คีน</span>
-          <span class="cast-pill">มาร์คณฐ</span><span class="cast-pill">แอสตัน</span><span class="cast-pill">อั่งเป่า</span><span class="cast-pill">อชิ</span><span class="cast-pill">ต้อ</span><span class="cast-pill">โต๋</span>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="card" data-status="open" onclick="openModal('shadow')">
-      <div class="card-media" style="max-height:130px">
-        <div class="card-media-placeholder">🌙</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge open">เปิดกอง</span></div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">เงาใต้พระจันทร์</div>
-        <div class="card-story">แฟนเก่า / เงาและแสงจันทร์</div>
-        <div class="cast-section"><div class="cast-label">นักแสดงหลัก</div><div class="cast-list">
-          <span class="cast-pill lead">ฟิล์ม</span><span class="cast-pill lead">น้ำตาล</span>
-          <span class="cast-pill">เจมี่</span><span class="cast-pill">เค</span><span class="cast-pill">เอเจ</span>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="card" data-status="open" onclick="openModal('hung')">
-      <div class="card-media" style="max-height:130px">
-        <div class="card-media-placeholder">🦅</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge open">เปิดกอง</span></div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">หงเสนคลุกฝุ่น</div>
-        <div class="card-story">นักเลงเก่า · แอ็กชันดราม่า</div>
-        <div class="cast-section"><div class="cast-label">นักแสดงหลัก</div><div class="cast-list">
-          <span class="cast-pill lead">เกรท</span><span class="cast-pill lead">ไบร์ท</span>
-          <span class="cast-pill">มาร์ค</span><span class="cast-pill">พร้อม</span><span class="cast-pill">ม่อน</span><span class="cast-pill">พิพลอย</span>
-        </div></div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- 2026 — อ่านบท -->
-<div class="section" id="sec-2026-read">
-  <div class="sec-header">
-    <div class="sec-dot" style="background:var(--accent)"></div>
-    <h2>อ่านบท (Read Through)</h2>
-    <span class="yr">2026</span>
-    <span class="cnt">1 เรื่อง</span>
-  </div>
-  <div class="grid" id="grid-read26">
-    <div class="card" data-status="read" onclick="openModal('cupid_kiss')">
-      <div class="card-media" style="max-height:130px">
-        <div class="card-media-placeholder">💋</div>
-        <div class="card-media-overlay"></div>
-        <div class="card-media-badge"><span class="badge read">Read Through</span></div>
-        <div class="card-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">จำเลยจุ๊บ</div>
-        <div class="card-story">จุ๊บแลกความทรงจำ · โรแมนติกแฟนตาซี</div>
-        <div class="cast-section"><div class="cast-label">นักแสดงหลัก</div><div class="cast-list">
-          <span class="cast-pill lead">บาร์โค้ด</span><span class="cast-pill lead">คิน</span><span class="cast-pill lead">พอล</span><span class="cast-pill lead">เคน</span>
-          <span class="cast-pill">แซงต์</span><span class="cast-pill">ก๊อตจิ</span><span class="cast-pill">ปุน</span><span class="cast-pill">กีต้าร์</span>
-        </div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 2026 — PRE-PROD -->
-<div class="section" id="sec-2026-pre">
-  <div class="sec-header">
-    <div class="sec-dot" style="background:var(--gold)"></div>
-    <h2>Pre-production</h2>
-    <span class="yr">2026</span>
-    <span class="cnt">21 เรื่อง</span>
-  </div>
-  <div class="grid wide" id="grid-pre26">
-
-    <div class="card" data-status="pre" onclick="openModal('cupidg')">
-      <div class="card-body" style="padding-top:1.1rem">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-          <div class="card-title">Cupid Ghost</div><span class="badge pre">Pre prod</span>
-        </div>
-        <div class="card-story">เห็นผี จัดดอกไม้ คอมเมดี้</div>
-        <div class="cast-list">
-          <span class="cast-pill lead">เอิร์ท</span><span class="cast-pill lead">มิกซ์</span>
-          <span class="cast-pill">ปุน</span><span class="cast-pill">โอห์ม</span><span class="cast-pill">ปูน</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" data-status="pre" onclick="openModal('stars')">
-      <div class="card-body" style="padding-top:1.1rem">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-          <div class="card-title">คืนนั้นฉันมองเห็นดาวด้วยตาเปล่า</div><span class="badge pre">Pre prod</span>
-        </div>
-        <div class="card-story">ดาวสองดวง ย้อนเวลาช่วยชีวิต</div>
-        <div class="cast-list">
-          <span class="cast-pill lead">ป่านปทิ</span><span class="cast-pill lead">ฟอนต์</span>
-          <span class="cast-pill">เจ้าหญิง</span><span class="cast-pill">ชาริ</span><span class="cast-pill">เชลซี</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">Surf n' Love</div><span class="badge pre">Pre prod เดือน 8–10</span>
-      </div>
-      <div class="card-story">น้ำทะเล · โรแมนติกฤดูร้อน</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">เอส</span><span class="cast-pill lead">โอม</span><span class="cast-pill lead">นีโอ</span>
-        <span class="cast-pill">ป่านณัช</span><span class="cast-pill">เซิฟ</span><span class="cast-pill">เอแคลร์</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">21 วันลองมารักกันดูไหม</div><span class="badge pre">Pre prod</span>
-      </div>
-      <div class="card-story">อกหักกับคนเดียวกัน · หลังคอนเสิร์ต ก.ย.</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">เจมีไนน์</span><span class="cast-pill lead">เกรท</span>
-        <span class="cast-pill">นัท</span><span class="cast-pill">ฮง</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">เคียงมังกร</div><span class="badge pre">Pre prod เดือน 5+</span>
-      </div>
-      <div class="card-story">จีนเชิดมังกร · ทำนายทายทัพ</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">น้ำตาล</span><span class="cast-pill lead">ฟิล์ม</span><span class="cast-pill lead">ไบร์ท</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">overdose คืนแค้น</div><span class="badge pre">Pre prod</span>
-      </div>
-      <div class="card-story">แค้น · ดราม่าระทึกขวัญ</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">ตู</span><span class="cast-pill lead">บุ๊ค</span><span class="cast-pill lead">เค</span><span class="cast-pill lead">มิวนิช</span>
-        <span class="cast-pill">ชาริ</span><span class="cast-pill">ฟลุ๊คจี</span><span class="cast-pill">นานิ</span><span class="cast-pill">นนน</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">Roommate Chaos</div><span class="badge pre">Pre prod เดือน 6+</span>
-      </div>
-      <div class="card-story">นอนหอ แตกต่าง รักกัน</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">เซิฟ</span><span class="cast-pill lead">จาว่า</span><span class="cast-pill lead">เซฟ</span><span class="cast-pill lead">ฟรัง</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">Bake Love Feeling ขนมปังชีสเนย</div><span class="badge pre">Pre prod</span>
-      </div>
-      <div class="card-story">ร้านเบเกอรี่ ทนายหญิง เนยชีส</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">แจน</span><span class="cast-pill lead">จิงจิง</span>
-        <span class="cast-pill">ฟอร์ด</span><span class="cast-pill">ป่านณัช</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">17th Spring</div><span class="badge pre">Pre prod</span>
-      </div>
-      <div class="card-story">ลบคราบน้ำตา ลบเรื่องราวร้ายๆ ให้เธอ</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">โชกุน</span><span class="cast-pill lead">แอสตัน</span><span class="cast-pill lead">ป๊อด</span><span class="cast-pill lead">ปาแปง</span>
-        <span class="cast-pill">ธรรม</span><span class="cast-pill">ตาต้า</span><span class="cast-pill">สิงหะ</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">Ditto ระฟ้า หล่นสวรรค์</div><span class="badge pre">Pre prod เดือน 7+</span>
-      </div>
-      <div class="card-story">บัลเล่แอร์ โรแมนติกดราม่า</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">พิพลอย</span><span class="cast-pill lead">เอิร์น</span><span class="cast-pill lead">ไซซี</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">พัตลมอย่าแย่</div><span class="badge pre">Pre prod</span>
-      </div>
-      <div class="card-story">บอสชอบคับ · โรแมนติกออฟฟิศ</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">เอเจ</span><span class="cast-pill lead">เจเจ</span>
-        <span class="cast-pill">ตุ้ย</span><span class="cast-pill">เลโก้</span><span class="cast-pill">แซมมี่</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">Plan B to U</div><span class="badge pre">Pre prod</span>
-      </div>
-      <div class="card-story">กลับมาซื้อบ้านซะ</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">นีโอ</span><span class="cast-pill lead">เอเจ</span><span class="cast-pill lead">เจมี่</span>
-        <span class="cast-pill">หลุยส์</span><span class="cast-pill">อินดี้</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">พี่วินร้อยล้านกับหวานใจเกลือสมุทร</div><span class="badge pre">Pre prod</span>
-      </div>
-      <div class="card-story">ผมเป็นท่านรองบอ</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">พลอยภัช</span><span class="cast-pill lead">ไตเติ้ล</span>
-        <span class="cast-pill">ปาแปง</span><span class="cast-pill">แซมมี่</span><span class="cast-pill">เอิร์น</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">ให้รักกังวานในใจ</div><span class="badge pre">Pre prod</span>
-      </div>
-      <div class="card-story">สมัครเด ปัญหาการได้ยิน นิยาย</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">จูน</span><span class="cast-pill lead">มิวนิช</span>
-        <span class="cast-pill">เซฟ</span><span class="cast-pill">สุดยอด</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">Round One Series</div><span class="badge pre">Pre prod</span>
-      </div>
-      <div class="card-story">ย้อนเวลานักมวยนักข่าว</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">มาร์ค</span><span class="cast-pill lead">โอม</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">โปรดอยู่ในความคุ้มครองของป้องปืน</div><span class="badge pre">Pre prod ปลายปี</span>
-      </div>
-      <div class="card-story">โปลิศกับดาราลูกทุ่งใหม่</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">จุง</span><span class="cast-pill lead">ดัง</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">ภารกิจจับจิ้นเดือด AAA</div><span class="badge pre">Pre prod ทำบท</span>
-      </div>
-      <div class="card-story">ผู้หมวดได้เล่นวายเพราะถูกจิ้น</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">สกาย</span><span class="cast-pill lead">นานิ</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">The Spooky Love Tale</div><span class="badge pre">Pre prod</span>
-      </div>
-      <div class="card-story">เจอผีชนเจอผี</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">ม่อน</span><span class="cast-pill lead">ริว</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">Her รักของเธอ</div><span class="badge pre">Pre prod</span>
-      </div>
-      <div class="card-story">รักนี้ต้องแก้แค้น</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">อ้าย</span><span class="cast-pill lead">จูเนียร์</span><span class="cast-pill lead">มิ้น</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">Gun Shot</div><span class="badge pre">Pre prod ใกล้เปิด</span>
-      </div>
-      <div class="card-story">หลงรักฆาตกร</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">ชิม่อน</span><span class="cast-pill lead">มิ้น</span><span class="cast-pill lead">ไตเติ้ล</span><span class="cast-pill lead">โอม</span>
-        <span class="cast-pill">ฟลุ๊คจี</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">จิรภัทรจะเป็นเด็กดี</div><span class="badge pre">Pre prod เดือน 7–8</span>
-      </div>
-      <div class="card-story">วัยเด็กครั้งที่สอง</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">ลุค</span><span class="cast-pill lead">มิค</span>
-        <span class="cast-pill">ปุน</span><span class="cast-pill">ตาต้า</span><span class="cast-pill">ไททัน</span><span class="cast-pill">จูโน่</span><span class="cast-pill">มันตรา</span><span class="cast-pill">แซงต์</span><span class="cast-pill">มายเม่</span><span class="cast-pill">เคน</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">High &amp; Low Born to be High</div><span class="badge pre">Pre prod</span>
-      </div>
-      <div class="card-story">เรื่องดังจากญี่ปุ่น · แก๊งค์ฝ่ายปรปักษ์</div>
-      <div class="cast-list">
-        <span class="cast-pill lead">ปอนด์</span><span class="cast-pill lead">ซี</span><span class="cast-pill lead">โอห์ม</span>
-        <span class="cast-pill">มาร์คภาคิน</span><span class="cast-pill">ข้าวตัง</span><span class="cast-pill">สกาย</span><span class="cast-pill">นานิ</span><span class="cast-pill">นนน</span><span class="cast-pill">จอส</span><span class="cast-pill">อู๋</span><span class="cast-pill">เพิร์ธ</span><span class="cast-pill">วินนี่</span><span class="cast-pill">บาร์โค้ด</span>
-      </div>
-    </div></div>
-
-    <div class="card" data-status="pre"><div class="card-body" style="padding-top:1.1rem">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <div class="card-title">Write You Again</div><span class="badge pre">Pre prod เดือน 6+</span>
-      </div>
-      <div class="card-story">ความทรงจำที่หายไปหมดเลย</div>
-      <div class="cast-list"><span class="cast-pill">—</span></div>
-    </div></div>
-
-  </div>
-</div>
-
-<!-- ════ CAST PAGE ════ -->
-<div class="cast-page hidden" id="tab-cast">
-  <div style="padding-top:2rem">
-    <div class="sec-header">
-      <div class="sec-dot" style="background:var(--gold)"></div>
-      <h2>นักแสดงทั้งหมด</h2>
-      <span style="font-size:11px;color:var(--text3);margin-left:8px">🟧 มีซีรีส์ถ่ายทำ/ออนแอร์ · สีเข้ม &nbsp; 🔲 ยังว่าง · สีอ่อน</span>
-    </div>
-    <div style="font-size:12px;color:var(--text3);margin-bottom:1.25rem">สีเข้ม = มีซีรีส์ถ่ายทำหรือออนอยู่ในปีนี้ &nbsp;|&nbsp; สีอ่อน = preprod หรือยังไม่มีกำหนด</div>
-    <div class="cast-grid" id="cast-grid"></div>
-  </div>
-</div>
-
-<!-- MODAL -->
-<div class="modal-bg hidden" id="modal" onclick="closeModal(event)">
-  <div class="modal" id="modal-inner">
-    <button class="modal-close" onclick="document.getElementById('modal').classList.add('hidden')">✕</button>
-    <div id="modal-content"></div>
+  <div class="bottom-bar">
+    <div class="letter-tag" id="letterTag">A.</div>
+    <div class="progress-dots" id="dots"></div>
+    <button class="next-btn" id="nextBtn" title="ข้อถัดไป (สุ่ม)">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M9 6L15 12L9 18" stroke="#06204f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
   </div>
 </div>
 
 <script>
-// ── TAB SYSTEM ──
-function showTab(tab) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  const sections = ['sec-2024','sec-2025','sec-2026-on','sec-2026-open','sec-2026-read','sec-2026-pre'];
-  const yearDivs = document.querySelectorAll('.yr-divider');
-  const castPage = document.getElementById('tab-cast');
-  const hero = document.getElementById('tab-all');
+/* ============================================================
+   วิธีเพิ่มซีรีส์ใหม่:
+   เติม object ใหม่ลงใน array "seriesData" ด้านล่าง ตามรูปแบบนี้:
 
-  if (tab === 'cast') {
-    sections.forEach(s => document.getElementById(s).classList.add('hidden'));
-    yearDivs.forEach(d => d.classList.add('hidden'));
-    hero.style.display = 'none';
-    castPage.classList.remove('hidden');
-    return;
-  }
-  castPage.classList.add('hidden');
-  hero.style.display = '';
+   {
+     main: ["emoji1","emoji2","emoji3"],   // อีโมจิเปิดเผย 3 ตัว
+     hidden: ["emojiA","emojiB"],          // อีโมจิใบ้ A และ B
+     thai: "ชื่อซีรีส์ภาษาไทย",
+     eng: "English Series Name",
+     actors: "นักแสดงหลัก, นักแสดงรอง, ..."
+   }
 
-  if (tab === 'all') {
-    sections.forEach(s => document.getElementById(s).classList.remove('hidden'));
-    yearDivs.forEach(d => d.classList.remove('hidden'));
-  } else if (tab === '2024') {
-    sections.forEach(s => document.getElementById(s).classList.add('hidden'));
-    yearDivs.forEach(d => d.classList.add('hidden'));
-    document.getElementById('sec-2024').classList.remove('hidden');
-  } else if (tab === '2025') {
-    sections.forEach(s => document.getElementById(s).classList.add('hidden'));
-    yearDivs.forEach(d => d.classList.add('hidden'));
-    document.getElementById('sec-2025').classList.remove('hidden');
-  } else if (tab === '2026') {
-    document.getElementById('sec-2024').classList.add('hidden');
-    document.getElementById('sec-2025').classList.add('hidden');
-    document.getElementById('sec-2026-on').classList.remove('hidden');
-    document.getElementById('sec-2026-open').classList.remove('hidden');
-    document.getElementById('sec-2026-read').classList.remove('hidden');
-    document.getElementById('sec-2026-pre').classList.remove('hidden');
-    yearDivs.forEach(d => { if(d.textContent.includes('2026')) d.classList.remove('hidden'); else d.classList.add('hidden'); });
+   แล้วคั่นด้วย comma กับรายการก่อนหน้า ไม่ต้องแก้ส่วนอื่นของโค้ด
+   ระบบจะสุ่มลำดับการ์ดให้เองทุกครั้งที่เล่นครบรอบ
+   ============================================================ */
+
+const seriesData = [
+  {
+    main: ["💸","🔫","📷"],
+    hidden: ["💖","🍑"],
+    thai: "มีสติหน่อยคุณธีร์",
+    eng: "Me and Thee Series",
+    actors: "ปอนด์ภูวิน, วิลเลี่ยมเอส, เพิร์ธแซนต้า, บอนนี่"
+  },
+  {
+    main: ["👔","😡","📢"],
+    hidden: ["🍼","🌸"],
+    thai: "พี่ว้ากตัวร้ายกับนายปีหนึ่ง",
+    eng: "Sotus",
+    actors: "คริส, สิงโต"
+  },
+  {
+    main: ["📝","😈","🙊"],
+    hidden: ["📼","🎁"],
+    thai: "เด็กนักเรียนพลังกิฟต์",
+    eng: "The Gifted Series",
+    actors: "นนน, โอม, ชิม่อน, กัน, แจน, เฟียต, ลิลลี่, ปุยเมฆ, เอเจ, เจเจ, ภูวิน"
   }
+
+  // ====== ตัวอย่างการเพิ่มซีรีส์ใหม่: เอา // ออกจากบรรทัด comma ด้านล่าง และ block ที่ตามมา แล้วแก้ข้อมูล ======
+  // ,
+  // {
+  //   main: ["🏀","🏫","💌"],
+  //   hidden: ["🎸","🌧️"],
+  //   thai: "ชื่อซีรีส์ที่จะเพิ่ม",
+  //   eng: "Series Name In English",
+  //   actors: "นักแสดง1, นักแสดง2, นักแสดง3"
+  // }
+];
+
+let order = [];
+let orderPos = 0;
+let current = 0;
+let selectedTime = 60;
+let timeLeft = 60;
+let timerInterval = null;
+let paused = false;
+let hintStage = 0;
+let nameRevealed = false;
+
+const dotsEl = document.getElementById('dots');
+const mainEmojiEl = document.getElementById('mainEmoji');
+const emojiAEl = document.getElementById('emojiA');
+const emojiBEl = document.getElementById('emojiB');
+const slotA = document.getElementById('slotA');
+const slotB = document.getElementById('slotB');
+const hintBtn = document.getElementById('hintBtn');
+const namePlate = document.getElementById('namePlate');
+const thaiNameEl = document.getElementById('thaiName');
+const engNameEl = document.getElementById('engName');
+const actorsEl = document.getElementById('actors');
+const timerEl = document.getElementById('timer');
+const pauseBtn = document.getElementById('pauseBtn');
+const nextBtn = document.getElementById('nextBtn');
+const slideEl = document.getElementById('slide');
+const letterTagEl = document.getElementById('letterTag');
+const modeRow = document.getElementById('modeRow');
+const modeBtns = modeRow.querySelectorAll('.mode-btn');
+
+function setActiveModeBtn(){
+  modeBtns.forEach(b => b.classList.toggle('active', Number(b.dataset.time) === selectedTime));
+}
+modeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    selectedTime = Number(btn.dataset.time);
+    setActiveModeBtn();
+    resetTimer();
+  });
+});
+modeBtns[0].classList.add('active');
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
 
-// ── FILTER ──
-function filterAll(status, btn) {
-  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const cards = document.querySelectorAll('.card');
-  cards.forEach(c => {
-    if (status === 'all' || c.dataset.status === status) c.style.display = '';
-    else c.style.display = 'none';
+function buildOrder(){
+  order = shuffle(seriesData.map((_, i) => i));
+  orderPos = 0;
+  current = order[0];
+}
+
+function buildDots(){
+  dotsEl.innerHTML = '';
+  seriesData.forEach((_, i) => {
+    const d = document.createElement('span');
+    if(i === current) d.classList.add('active');
+    dotsEl.appendChild(d);
   });
 }
 
-// ── MODAL DATA ──
-const modals = {
-  scarlet: {
-    title: 'Scarlet Heart TH',
-    badge: 'open',badgeText:'เปิดกอง',
-    story: 'ดัดแปลงจากซีรีส์จีน Moon Lovers: Scarlet Heart Ryeo ฉบับไทย สาวสมัยใหม่ถูกย้อนเวลาไปยุคราชสำนักโบราณ พบรักกับเจ้าชายหลายพระองค์ท่ามกลางการชิงบัลลังก์และการเมืองที่ซับซ้อน',
-    cast: [['Win','lead'],['Nanon','lead'],['Phuwin','lead'],['Force','lead'],['Tay','lead'],['Fourth','lead'],['Perth','lead'],['Tu','lead'],['อ้าย',''],['พรีม',''],['มิ้ลค์',''],['ป่านพีท',''],['ไซซี','']],
-    meta: {ปี:'2024',ตอน:'0/18',ออน:'ส.ค.–ก.ย. 2025',ประเภท:'Period Drama'},
-    pilot: 'https://www.youtube.com/embed/',
-    platforms: ['GMMTV+','YouTube','LINE TV']
-  },
-  girlrules: {
-    title: 'Girl Rules',
-    badge: 'done',badgeText:'จบแล้ว',
-    story: 'ซีรีส์ว่าด้วยกฎของผู้หญิง ความสัมพันธ์ระหว่างเพื่อนสาวและความท้าทายของชีวิต · Girl Power Comedy Drama',
-    cast: [['บุ๋น','lead'],['เปรม','lead']],
-    meta: {ปี:'2025',จบ:'29 มิ.ย. 2025',ประเภท:'Drama Comedy'},
-    platforms: ['GMMTV+','YouTube']
-  },
-  wu: {
-    title: 'Wu',
-    badge: 'on',badgeText:'ออนอยู่',
-    story: 'นักสู้ผู้มีพลังพิเศษที่ซ่อนเร้น ต้องเผชิญกับศัตรูที่ล้ำเกินกว่าจะจินตนาการ · แอ็กชันแฟนตาซี',
-    cast: [['สกาย','lead'],['นานิ','lead']],
-    meta: {ปี:'2025',ตอน:'5/9',วัน:'อังคาร',จบ:'30 มิ.ย.'},
-    platforms: ['GMMTV+','YouTube']
-  },
-  ticket: {
-    title: 'Ticket to Heaven',
-    badge: 'on',badgeText:'ออนอยู่',
-    story: 'เจมีไนน์และโฟร์ทรับบทนำในซีรีส์แฟนตาซีเกี่ยวกับชีวิต ความตาย และตั๋วสู่สวรรค์',
-    cast: [['เจมีไนน์','lead'],['โฟร์ท','lead']],
-    meta: {ปี:'2025',ตอน:'2/6',วัน:'เสาร์',จบ:'29 ก.ค.'},
-    platforms: ['GMMTV+']
-  },
-  dog: {
-    title: 'หมาเห่าเครื่องบิน',
-    badge: 'on',badgeText:'ออนอยู่',
-    story: 'ชายหนุ่มหัวแข็งที่เกลียดเครื่องบิน ได้เจอกับนักบินหล่อเย็น ชาที่จะพลิกชีวิตเขาไปตลอดกาล · คอมเมดี้โรแมนติก',
-    cast: [['เต','lead'],['นิว','lead'],['กระปุก',''],['ไซซี',''],['จุง',''],['ดัง','']],
-    meta: {ปี:'2025',ตอน:'2/10',วัน:'ศุกร์',จบ:'2 ก.ค.'},
-    platforms: ['GMMTV+']
-  },
-  lun: {
-    title: 'ลัลน์ไม่ชอบไวน์',
-    badge: 'on',badgeText:'ออนอยู่',
-    story: 'หญิงสาวที่ไม่ชอบไวน์ต้องมาทำงานในร้านไวน์ชั้นนำ แต่กลับพบรักกับนักชิมไวน์ผู้เชี่ยวชาญที่ทั้งน่ารำคาญและน่าหลงใหล · โรแมนติกคอมเมดี้ GMMTV 2026',
-    cast: [['แจน','lead'],['จิงจิง','lead']],
-    meta: {ปี:'2026',ตอน:'6/10',วัน:'อาทิตย์',จบ:'31 ก.ค.'},
-    platforms: ['GMMTV+','YouTube','Netflix']
-  },
-  wof: {
-    title: 'When Orange Fall',
-    badge: 'on',badgeText:'ออนอยู่',
-    story: 'เมื่อส้มหล่น ความรักที่ไม่คาดฝันก็เริ่มต้น อัลมอนและโปรเกรสรับบทนำในซีรีส์โรแมนติกดราม่า GMMTV 2026',
-    cast: [['อัลมอน','lead'],['โปรเกรส','lead'],['จิมมี่',''],['ซี',''],['วินนี่',''],['สตางค์',''],['เค','']],
-    meta: {ปี:'2026',ตอน:'4/12',วัน:'พุธ',จบ:'4 ก.ค.'},
-    platforms: ['GMMTV+','YouTube']
-  },
-  match: {
-    title: 'Match Point',
-    badge: 'open',badgeText:'เปิดกอง',
-    story: 'ตีเทนนิสคู่ สู้กัน · คู่ปรปักษ์บนสนามเทนนิสที่ค่อยๆ เปลี่ยนมาเป็นคู่รักนอกสนาม · กีฬาโรแมนติก',
-    cast: [['เตโช','lead'],['ปิง','lead'],['ซิง','lead'],['ชิม่อน','lead'],['อาร์ม',''],['จาว่า',''],['ฟรัง',''],['ตาต้า','']],
-    meta: {ปี:'2026',ตอน:'6/10',วัน:'อาทิตย์',จบ:'5 ก.ค.'},
-    platforms: ['GMMTV+']
-  },
-  cupid_kiss: {
-    title: 'จำเลยจุ๊บ',
-    badge: 'read',badgeText:'Read Through',
-    story: 'จุ๊บแลกความทรงจำ · เมื่อจุ๊บคนหนึ่งทำให้ความทรงจำหายไปและได้รับความทรงจำใหม่มา · โรแมนติกแฟนตาซี',
-    cast: [['บาร์โค้ด','lead'],['คิน','lead'],['พอล','lead'],['เคน','lead'],['แซงต์',''],['ก๊อตจิ',''],['ปุน',''],['กีต้าร์','']],
-    meta: {ปี:'2026',สถานะ:'Read Through'},
-    platforms: ['GMMTV+']
-  },
-  cupidg: {
-    title: 'Cupid Ghost',
-    badge: 'pre',badgeText:'Pre production',
-    story: 'เห็นผี จัดดอกไม้ คอมเมดี้ · ชายหนุ่มที่มองเห็นผีได้กลายเป็นผู้ช่วยร้านดอกไม้ · โรแมนติกคอมเมดี้แฟนตาซี',
-    cast: [['เอิร์ท','lead'],['มิกซ์','lead'],['ปุน',''],['โอห์ม',''],['ปูน','']],
-    meta: {ปี:'2026',สถานะ:'Pre production'},
-    platforms: ['GMMTV+']
-  },
-  stars: {
-    title: 'คืนนั้นฉันมองเห็นดาวด้วยตาเปล่า',
-    badge: 'pre',badgeText:'Pre production',
-    story: 'ดาวสองดวง ย้อนเวลาช่วยชีวิต · คืนหนึ่งที่ฉันมองเห็นดาวด้วยตาเปล่า ชีวิตก็เปลี่ยนไปตลอดกาล',
-    cast: [['ป่านปทิ','lead'],['ฟอนต์','lead'],['เจ้าหญิง',''],['ชาริ',''],['เชลซี','']],
-    meta: {ปี:'2026',สถานะ:'Pre production (เปิดกองต้นปีหน้า)'},
-    platforms: ['GMMTV+']
-  },
-  peach: {
-    title: 'มีสติแล้วลูกพีช Peach and Me',
-    badge: 'open',badgeText:'เปิดกอง',
-    story: 'ภาคต่อคุณธีร์ · หลังจากนั้นโลต่างจัดหวัด · โรแมนติกคอมเมดี้',
-    cast: [['วิลเลี่ยม','lead'],['เอส','lead'],['PP',''],['WE',''],['PS',''],['บอนนี่','']],
-    meta: {ปี:'2026',ตอน:'2/10',วัน:'ศุกร์',จบ:'30 ก.ค.'},
-    platforms: ['GMMTV+']
-  }
-};
+function loadRound(){
+  const item = seriesData[current];
+  mainEmojiEl.textContent = item.main.join(' ');
+  emojiAEl.textContent = item.hidden[0];
+  emojiBEl.textContent = item.hidden[1];
+  thaiNameEl.textContent = item.thai;
+  engNameEl.textContent = item.eng;
+  actorsEl.textContent = item.actors;
 
-function openModal(id) {
-  const d = modals[id];
-  if (!d) return;
-  const badgeColors = {on:'on',near:'near',open:'open',read:'read',pre:'pre',done:'done',y24:'y24'};
-  const castHTML = d.cast.map(([n,t]) => `<span class="cast-pill ${t==='lead'?'lead':''}">${n}</span>`).join('');
-  const metaHTML = Object.entries(d.meta).map(([k,v]) => `<div class="modal-meta-item"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
-  const platHTML = (d.platforms||[]).map(p => `<a class="modal-plat" href="#" onclick="return false">▶ ${p}</a>`).join('');
-  const pilotHTML = d.pilot ? `<div class="modal-section"><div class="modal-sec-label">Pilot / Teaser</div><div class="video-embed"><iframe src="${d.pilot}" allowfullscreen></iframe></div></div>` : '';
+  slotA.classList.remove('revealed');
+  slotB.classList.remove('revealed');
+  namePlate.classList.remove('revealed');
+  actorsEl.classList.remove('revealed');
+  hintStage = 0;
+  nameRevealed = false;
+  hintBtn.disabled = false;
+  hintBtn.textContent = '💡 ใบ้';
+  letterTagEl.textContent = String.fromCharCode(65 + (orderPos % 26)) + '.';
 
-  document.getElementById('modal-content').innerHTML = `
-    <div class="modal-body">
-      <div class="modal-header">
-        <div class="modal-title">${d.title}</div>
-        <span class="badge ${d.badge}">${d.badgeText}</span>
-      </div>
-      <div class="modal-story">${d.story}</div>
-      ${pilotHTML}
-      <div class="modal-section">
-        <div class="modal-sec-label">นักแสดง</div>
-        <div class="modal-cast-list">${castHTML}</div>
-      </div>
-      <div class="modal-section">
-        <div class="modal-sec-label">ข้อมูล</div>
-        <div class="modal-meta-grid">${metaHTML}</div>
-      </div>
-      ${platHTML ? `<div class="modal-section"><div class="modal-sec-label">Platform</div><div class="modal-platforms">${platHTML}</div></div>` : ''}
-    </div>`;
-  document.getElementById('modal').classList.remove('hidden');
+  buildDots();
+  resetTimer();
 }
-function closeModal(e) { if(e.target === document.getElementById('modal')) document.getElementById('modal').classList.add('hidden'); }
 
-// ── CAST DATA ──
-const castData = [
-  // มีซีรีส์ถ่ายทำ/ออน (has-series = สีเข้ม)
-  {name:'แจน',series:'ลัลน์ไม่ชอบไวน์, Bake Love Feeling',has:true},
-  {name:'จิงจิง',series:'ลัลน์ไม่ชอบไวน์, Bake Love Feeling',has:true},
-  {name:'อัลมอน',series:'When Orange Fall',has:true},
-  {name:'โปรเกรส',series:'When Orange Fall',has:true},
-  {name:'จิมมี่',series:'When Orange Fall',has:true},
-  {name:'ซี',series:'When Orange Fall, Weirdo 101',has:true},
-  {name:'สกาย',series:'Wu, ภารกิจ AAA',has:true},
-  {name:'นานิ',series:'Wu, ภารกิจ AAA',has:true},
-  {name:'เจมีไนน์',series:'Ticket to Heaven, 21วัน',has:true},
-  {name:'โฟร์ท',series:'Ticket to Heaven',has:true},
-  {name:'เต',series:'หมาเห่าเครื่องบิน',has:true},
-  {name:'นิว',series:'หมาเห่าเครื่องบิน',has:true},
-  {name:'กระปุก',series:'หมาเห่าเครื่องบิน',has:true},
-  {name:'ไซซี',series:'หมาเห่าเครื่องบิน, Ditto',has:true},
-  {name:'จุง',series:'หมาเห่าเครื่องบิน, โปรดป้องปืน',has:true},
-  {name:'ดัง',series:'หมาเห่าเครื่องบิน, โปรดป้องปืน',has:true},
-  {name:'บุ๋น',series:'Girl Rules',has:true},
-  {name:'เปรม',series:'Girl Rules',has:true},
-  {name:'เตโช',series:'Match Point',has:true},
-  {name:'ปิง',series:'Match Point',has:true},
-  {name:'ซิง',series:'Match Point, Mr.Kill',has:true},
-  {name:'ชิม่อน',series:'Match Point, Gun Shot',has:true},
-  {name:'อาร์ม',series:'Match Point',has:true},
-  {name:'จาว่า',series:'Match Point, Roommate Chaos',has:true},
-  {name:'ฟรัง',series:'Match Point',has:true},
-  {name:'ตาต้า',series:'Match Point, 17th Spring',has:true},
-  {name:'วิลเลี่ยม',series:'มีสติแล้วลูกพีช',has:true},
-  {name:'เอส',series:'มีสติแล้วลูกพีช, Surf n\'Love',has:true},
-  {name:'WE',series:'You Maniac, มีสติแล้วลูกพีช',has:true},
-  {name:'บาร์โค้ด',series:'You Maniac, จำเลยจุ๊บ',has:true},
-  {name:'คิน',series:'You Maniac, จำเลยจุ๊บ',has:true},
-  {name:'สแตมป์',series:'You Maniac, จุดจีบสายมู',has:true},
-  {name:'อั๋น',series:'You Maniac, จุดจีบสายมู',has:true},
-  {name:'อั่งเปา',series:'You Maniac',has:true},
-  {name:'ธรรม',series:'จุดจีบสายมู, 17th Spring',has:true},
-  {name:'แมค',series:'จุดจีบสายมู',has:true},
-  {name:'พอล',series:'จุดจีบสายมู, จำเลยจุ๊บ',has:true},
-  {name:'จูโน่',series:'จุดจีบสายมู, จิรภัทร',has:true},
-  {name:'พรีมเต้น',series:'จุดจีบสายมู',has:true},
-  {name:'จอส',series:'Mr.Kill, High&Low',has:true},
-  {name:'กวิน',series:'Mr.Kill',has:true},
-  {name:'ดิว',series:'Mr.Kill, Ditto',has:true},
-  {name:'ธี',series:'Mr.Kill, Ditto',has:true},
-  {name:'สิงหะ',series:'Mr.Kill, 17th Spring',has:true},
-  {name:'นีโอ',series:'Mr.Kill, Surf n\'Love',has:true},
-  {name:'มาตา',series:'Mr.Kill',has:true},
-  {name:'ว่ายฟ้า',series:'Oxytoxin',has:true},
-  {name:'ต้นข้าว',series:'Oxytoxin',has:true},
-  {name:'เบนซ์',series:'Oxytoxin',has:true},
-  {name:'โยเกิร์ต',series:'Oxytoxin',has:true},
-  {name:'แป้ง',series:'Oxytoxin, 17th Spring',has:true},
-  {name:'คีน',series:'Weirdo 101',has:true},
-  {name:'มาร์คณฐ',series:'Weirdo 101',has:true},
-  {name:'แอสตัน',series:'Weirdo 101, 17th Spring',has:true},
-  {name:'อั่งเป่า',series:'Weirdo 101',has:true},
-  {name:'อชิ',series:'Weirdo 101',has:true},
-  {name:'ต้อ',series:'Weirdo 101',has:true},
-  {name:'โต๋',series:'Weirdo 101',has:true},
-  {name:'ฟิล์ม',series:'เงาใต้พระจันทร์, เคียงมังกร',has:true},
-  {name:'น้ำตาล',series:'เงาใต้พระจันทร์, เคียงมังกร',has:true},
-  {name:'เจมี่',series:'เงาใต้พระจันทร์, Plan B',has:true},
-  {name:'เค',series:'เงาใต้พระจันทร์',has:true},
-  {name:'เอเจ',series:'เงาใต้พระจันทร์, พัตลม',has:true},
-  {name:'เกรท',series:'หงเสน, 21วัน',has:true},
-  {name:'ไบร์ท',series:'หงเสน, เคียงมังกร',has:true},
-  {name:'มาร์ค',series:'หงเสน',has:true},
-  {name:'พร้อม',series:'หงเสน',has:true},
-  {name:'ม่อน',series:'หงเสน, Spooky',has:true},
-  {name:'พิพลอย',series:'หงเสน, Ditto',has:true},
-  {name:'Win',series:'Scarlet Heart',has:true},
-  {name:'Nanon',series:'Scarlet Heart',has:true},
-  {name:'Phuwin',series:'Scarlet Heart',has:true},
-  {name:'Force',series:'Scarlet Heart',has:true},
-  {name:'Tay',series:'Scarlet Heart',has:true},
-  {name:'Fourth',series:'Scarlet Heart',has:true},
-  {name:'Perth',series:'Scarlet Heart',has:true},
-  {name:'Tu',series:'Scarlet Heart',has:true},
-  {name:'บาร์โค้ด-คิน',series:'จำเลยจุ๊บ',has:true},
-  {name:'แซงต์',series:'จำเลยจุ๊บ',has:true},
-  {name:'ก๊อตจิ',series:'จำเลยจุ๊บ',has:true},
-  {name:'ปุน',series:'จำเลยจุ๊บ, Cupid Ghost',has:true},
-  {name:'กีต้าร์',series:'จำเลยจุ๊บ',has:true},
-  {name:'เอิร์ท',series:'Cupid Ghost',has:true},
-  {name:'มิกซ์',series:'Cupid Ghost',has:true},
-  {name:'โอห์ม',series:'Cupid Ghost, High&Low',has:true},
-  {name:'ปูน',series:'Cupid Ghost',has:true},
-  // ยังว่าง / pre-prod ไม่มีกำหนดชัด
-  {name:'ป่านปทิ',series:'คืนนั้น... (preprod)',has:false},
-  {name:'ฟอนต์',series:'คืนนั้น... (preprod)',has:false},
-  {name:'เจ้าหญิง',series:'คืนนั้น... (preprod)',has:false},
-  {name:'ชาริ',series:'คืนนั้น... (preprod)',has:false},
-  {name:'เชลซี',series:'คืนนั้น... (preprod)',has:false},
-  {name:'โอม',series:'Surf n\'Love (preprod)',has:false},
-  {name:'ป่านณัช',series:'Surf n\'Love (preprod)',has:false},
-  {name:'เซิฟ',series:'Surf n\'Love, Roommate (preprod)',has:false},
-  {name:'เอแคลร์',series:'Surf n\'Love (preprod)',has:false},
-  {name:'นัท',series:'21วัน (preprod)',has:false},
-  {name:'ฮง',series:'21วัน (preprod)',has:false},
-  {name:'โชกุน',series:'17th Spring (preprod)',has:false},
-  {name:'ป๊อด',series:'17th Spring (preprod)',has:false},
-  {name:'ปาแปง',series:'17th Spring (preprod)',has:false},
-  {name:'ไหมไท',series:'17th Spring (preprod)',has:false},
-  {name:'ริว',series:'Spooky Love Tale (preprod)',has:false},
-  {name:'ตู',series:'overdose (preprod)',has:false},
-  {name:'บุ๊ค',series:'overdose (preprod)',has:false},
-  {name:'มิวนิช',series:'overdose (preprod)',has:false},
-  {name:'ฟลุ๊คจี',series:'overdose, Gun Shot (preprod)',has:false},
-  {name:'นนน',series:'overdose, High&Low (preprod)',has:false},
-  {name:'เซฟ',series:'Roommate Chaos (preprod)',has:false},
-  {name:'ฟอร์ด',series:'Bake Love Feeling (preprod)',has:false},
-  {name:'พิพลอย',series:'Ditto (preprod)',has:false},
-  {name:'เอิร์น',series:'Ditto (preprod)',has:false},
-  {name:'เจเจ',series:'พัตลมอย่าแย่ (preprod)',has:false},
-  {name:'ตุ้ย',series:'พัตลมอย่าแย่ (preprod)',has:false},
-  {name:'เลโก้',series:'พัตลมอย่าแย่ (preprod)',has:false},
-  {name:'แซมมี่',series:'พัตลมอย่าแย่ (preprod)',has:false},
-  {name:'อินดี้',series:'Plan B (preprod)',has:false},
-  {name:'หลุยส์',series:'Plan B (preprod)',has:false},
-  {name:'พลอยภัช',series:'พี่วินร้อยล้าน (preprod)',has:false},
-  {name:'ไตเติ้ล',series:'พี่วินร้อยล้าน (preprod)',has:false},
-  {name:'จูน',series:'ให้รักกังวาน (preprod)',has:false},
-  {name:'สุดยอด',series:'ให้รักกังวาน (preprod)',has:false},
-  {name:'มาร์คโอม',series:'Round One (preprod)',has:false},
-  {name:'อ้าย',series:'Her รักของเธอ (preprod)',has:false},
-  {name:'จูเนียร์',series:'Her รักของเธอ (preprod)',has:false},
-  {name:'มิ้น',series:'Her รักของเธอ, Gun Shot (preprod)',has:false},
-  {name:'ไตเติ้ล',series:'Gun Shot (preprod)',has:false},
-  {name:'ลุค',series:'จิรภัทร (preprod)',has:false},
-  {name:'มิค',series:'จิรภัทร (preprod)',has:false},
-  {name:'ไททัน',series:'จิรภัทร (preprod)',has:false},
-  {name:'มันตรา',series:'จิรภัทร (preprod)',has:false},
-  {name:'มายเม่',series:'จิรภัทร (preprod)',has:false},
-  {name:'ไล้ท์ตี้',series:'จิรภัทร (preprod)',has:false},
-  {name:'ปอนด์',series:'High&Low (preprod)',has:false},
-  {name:'มาร์คภาคิน',series:'High&Low (preprod)',has:false},
-  {name:'ข้าวตัง',series:'High&Low (preprod)',has:false},
-  {name:'อู๋',series:'High&Low (preprod)',has:false},
-  {name:'เพิร์ธ',series:'High&Low (preprod)',has:false},
-  {name:'วินนี่',series:'High&Low (preprod)',has:false},
-];
+function resetTimer(){
+  clearInterval(timerInterval);
+  timeLeft = selectedTime;
+  paused = false;
+  pauseBtn.textContent = '❚❚';
+  updateTimerDisplay();
+  startTimer();
+}
 
-// render cast
-const grid = document.getElementById('cast-grid');
-castData.forEach(c => {
-  const div = document.createElement('div');
-  div.className = 'cast-chip ' + (c.has ? 'has-series' : 'no-series');
-  div.innerHTML = `<div class="name">${c.name}</div><div class="series-list-sm">${c.series}</div>`;
-  grid.appendChild(div);
+function startTimer(){
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    if(paused) return;
+    timeLeft--;
+    if(timeLeft <= 0){
+      timeLeft = 0;
+      updateTimerDisplay();
+      clearInterval(timerInterval);
+      slotA.classList.add('revealed');
+      slotB.classList.add('revealed');
+      namePlate.classList.add('revealed');
+      actorsEl.classList.add('revealed');
+      hintBtn.disabled = true;
+      return;
+    }
+    updateTimerDisplay();
+  }, 1000);
+}
+
+function updateTimerDisplay(){
+  timerEl.textContent = timeLeft;
+  timerEl.classList.toggle('low', timeLeft <= 10);
+}
+
+pauseBtn.addEventListener('click', () => {
+  paused = !paused;
+  pauseBtn.textContent = paused ? '►' : '❚❚';
 });
+
+hintBtn.addEventListener('click', () => {
+  if(hintStage === 0){
+    slotA.classList.add('revealed');
+    hintStage = 1;
+    hintBtn.textContent = '💡 ใบ้ (B)';
+  } else if(hintStage === 1){
+    slotB.classList.add('revealed');
+    hintStage = 2;
+    hintBtn.disabled = true;
+    hintBtn.textContent = '💡 ใบ้หมดแล้ว';
+  }
+});
+
+namePlate.addEventListener('click', () => {
+  nameRevealed = !nameRevealed;
+  namePlate.classList.toggle('revealed', nameRevealed);
+  actorsEl.classList.toggle('revealed', nameRevealed);
+});
+
+function goNext(){
+  orderPos = (orderPos + 1) % order.length;
+  if(orderPos === 0){
+    buildOrder();
+  } else {
+    current = order[orderPos];
+  }
+  loadRound();
+}
+
+function goPrev(){
+  orderPos = (orderPos - 1 + order.length) % order.length;
+  current = order[orderPos];
+  loadRound();
+}
+
+nextBtn.addEventListener('click', goNext);
+
+let touchStartX = 0;
+slideEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+slideEl.addEventListener('touchend', e => {
+  const diff = e.changedTouches[0].screenX - touchStartX;
+  if(Math.abs(diff) > 50){
+    if(diff < 0) goNext(); else goPrev();
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight') goNext();
+  else if(e.key === 'ArrowLeft') goPrev();
+});
+
+buildOrder();
+loadRound();
 </script>
+
 </body>
 </html>
