@@ -58,7 +58,6 @@
     pointer-events:none;
   }
 
-  /* ===== header ===== */
   .top-bar{
     display:flex;
     justify-content:space-between;
@@ -124,7 +123,6 @@
   }
   .pause-btn:hover{background:rgba(255,255,255,.22);}
 
-  /* ===== body: two columns ===== */
   .body-row{
     flex:1;
     display:flex;
@@ -275,7 +273,6 @@
   }
   .actors.revealed{ filter:blur(0); opacity:1; user-select:text; }
 
-  /* ===== footer ===== */
   .bottom-bar{
     display:flex;
     justify-content:space-between;
@@ -283,12 +280,6 @@
     margin-top:18px;
     z-index:1;
     position:relative;
-  }
-  .letter-tag{
-    font-size:22px;
-    font-weight:800;
-    color:var(--text-dim);
-    opacity:.6;
   }
   .progress-dots{ display:flex; gap:6px; }
   .progress-dots span{
@@ -366,7 +357,6 @@
   </div>
 
   <div class="bottom-bar">
-    <div class="letter-tag" id="letterTag">A.</div>
     <div class="progress-dots" id="dots"></div>
     <button class="next-btn" id="nextBtn" title="ข้อถัดไป (สุ่ม)">
       <svg viewBox="0 0 24 24" fill="none">
@@ -406,7 +396,7 @@ const seriesData = [
     hidden: ["🍼","🌸"],
     thai: "พี่ว้ากตัวร้ายกับนายปีหนึ่ง",
     eng: "Sotus",
-    actors: "คริสสิงโต"
+    actors: "คริส, สิงโต"
   },
   {
     main: ["📝","😈","🙊"],
@@ -420,8 +410,8 @@ const seriesData = [
     hidden: ["👹","🍃"],
     thai: "อู",
     eng: "WU",
-    actors: "สกายนานิ"
-  },
+    actors: "สกาย, นานิ"
+  }
 
   // ====== ตัวอย่างการเพิ่มซีรีส์ใหม่: เอา // ออกจากบรรทัด comma ด้านล่าง และ block ที่ตามมา แล้วแก้ข้อมูล ======
   // ,
@@ -459,7 +449,6 @@ const timerEl = document.getElementById('timer');
 const pauseBtn = document.getElementById('pauseBtn');
 const nextBtn = document.getElementById('nextBtn');
 const slideEl = document.getElementById('slide');
-const letterTagEl = document.getElementById('letterTag');
 const modeRow = document.getElementById('modeRow');
 const modeBtns = modeRow.querySelectorAll('.mode-btn');
 
@@ -516,7 +505,6 @@ function loadRound(){
   nameRevealed = false;
   hintBtn.disabled = false;
   hintBtn.textContent = '💡 ใบ้';
-  letterTagEl.textContent = String.fromCharCode(65 + (orderPos % 26)) + '.';
 
   buildDots();
   resetTimer();
