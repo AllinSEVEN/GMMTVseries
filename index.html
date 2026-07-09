@@ -281,13 +281,30 @@
     z-index:1;
     position:relative;
   }
-  .progress-dots{ display:flex; gap:6px; }
-  .progress-dots span{
-    width:7px;height:7px;border-radius:50%;
-    background:rgba(255,255,255,.25);
-    transition:.3s;
+
+  .progress-counter{
+    font-size:15px;
+    font-weight:700;
+    color:var(--text-dim);
+    display:flex;
+    align-items:baseline;
+    gap:2px;
   }
-  .progress-dots span.active{ background:var(--accent); box-shadow:0 0 10px var(--accent); }
+  .progress-counter .cur{
+    font-size:26px;
+    font-weight:800;
+    color:var(--accent);
+    text-shadow:0 0 12px rgba(0,194,255,.55);
+    transition:all .2s;
+  }
+  .progress-counter .sep{
+    font-size:18px;
+    opacity:.35;
+    margin:0 3px;
+  }
+  .progress-counter .total{
+    opacity:.4;
+  }
 
   .next-btn{
     width:54px;height:54px;
@@ -357,7 +374,11 @@
   </div>
 
   <div class="bottom-bar">
-    <div class="progress-dots" id="dots"></div>
+    <div class="progress-counter">
+      <span class="cur" id="curNum">1</span>
+      <span class="sep">/</span>
+      <span class="total" id="totalNum">6</span>
+    </div>
     <button class="next-btn" id="nextBtn" title="ข้อถัดไป (สุ่ม)">
       <svg viewBox="0 0 24 24" fill="none">
         <path d="M9 6L15 12L9 18" stroke="#06204f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -396,7 +417,7 @@ const seriesData = [
     hidden: ["🍼","🌸"],
     thai: "พี่ว้ากตัวร้ายกับนายปีหนึ่ง",
     eng: "Sotus",
-    actors: "คริสสิงโต"
+    actors: "คริส, สิงโต"
   },
   {
     main: ["📝","😈","🙊"],
@@ -410,7 +431,7 @@ const seriesData = [
     hidden: ["👹","🍃"],
     thai: "อู",
     eng: "WU",
-    actors: "สกายนานิ"
+    actors: "สกาย, นานิ"
   },
   {
     main: ["🌻","🌈","🎾"],
@@ -424,7 +445,7 @@ const seriesData = [
     hidden: ["🌳","✨"],
     thai: "นิทานพันดาว",
     eng: "1000 stars",
-    actors:"เอิร์ทมิกซ์, อ้าย"
+    actors: "เอิร์ทมิกซ์, อ้าย"
   }
 
   // ====== ตัวอย่างการเพิ่มซีรีส์ใหม่: เอา // ออกจากบรรทัด comma ด้านล่าง และ block ที่ตามมา แล้วแก้ข้อมูล ======
@@ -447,8 +468,8 @@ let timerInterval = null;
 let paused = false;
 let hintStage = 0;
 let nameRevealed = false;
+let globalCount = 1; // นับรวมข้ามรอบ
 
-const dotsEl = document.getElementById('dots');
 const mainEmojiEl = document.getElementById('mainEmoji');
 const emojiAEl = document.getElementById('emojiA');
 const emojiBEl = document.getElementById('emojiB');
@@ -465,6 +486,8 @@ const nextBtn = document.getElementById('nextBtn');
 const slideEl = document.getElementById('slide');
 const modeRow = document.getElementById('modeRow');
 const modeBtns = modeRow.querySelectorAll('.mode-btn');
+const curNumEl = document.getElementById('curNum');
+const totalNumEl = document.getElementById('totalNum');
 
 function setActiveModeBtn(){
   modeBtns.forEach(b => b.classList.toggle('active', Number(b.dataset.time) === selectedTime));
@@ -493,13 +516,9 @@ function buildOrder(){
   current = order[0];
 }
 
-function buildDots(){
-  dotsEl.innerHTML = '';
-  seriesData.forEach((_, i) => {
-    const d = document.createElement('span');
-    if(i === current) d.classList.add('active');
-    dotsEl.appendChild(d);
-  });
+function updateCounter(){
+  curNumEl.textContent = globalCount;
+  totalNumEl.textContent = seriesData.length;
 }
 
 function loadRound(){
@@ -520,7 +539,7 @@ function loadRound(){
   hintBtn.disabled = false;
   hintBtn.textContent = '💡 ใบ้';
 
-  buildDots();
+  updateCounter();
   resetTimer();
 }
 
@@ -586,13 +605,16 @@ function goNext(){
   orderPos = (orderPos + 1) % order.length;
   if(orderPos === 0){
     buildOrder();
+    globalCount = 1;
   } else {
     current = order[orderPos];
+    globalCount++;
   }
   loadRound();
 }
 
 function goPrev(){
+  if(globalCount > 1) globalCount--;
   orderPos = (orderPos - 1 + order.length) % order.length;
   current = order[orderPos];
   loadRound();
