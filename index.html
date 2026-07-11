@@ -6,327 +6,134 @@
 <title>ทายซีรีส์ GMMTV จาก Emoji</title>
 <style>
   :root{
-    --bg1:#0b1f4d;
-    --bg2:#123a8c;
-    --card:#173f99;
-    --card2:#0e2c75;
-    --accent:#00c2ff;
-    --accent2:#3b8bff;
-    --green:#19e08a;
-    --green-dark:#0fb56f;
-    --text:#f4f8ff;
-    --text-dim:#aecbff;
-    --plate:#1f4fae;
-    --plate-soft:#2c5fc7;
+    --bg1:#0b1f4d;--bg2:#123a8c;--card:#173f99;--card2:#0e2c75;
+    --accent:#00c2ff;--accent2:#3b8bff;--green:#19e08a;--green-dark:#0fb56f;
+    --text:#f4f8ff;--text-dim:#aecbff;--plate:#1f4fae;--plate-soft:#2c5fc7;
     --glow:0 0 18px rgba(0,194,255,.45);
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
+  *{box-sizing:border-box;margin:0;padding:0;}
   html,body{height:100%;}
   body{
-    font-family:'Segoe UI', 'Sarabun', Tahoma, sans-serif;
+    font-family:'Segoe UI','Sarabun',Tahoma,sans-serif;
     background:
-      radial-gradient(circle at 15% 0%, rgba(0,194,255,.25), transparent 45%),
-      radial-gradient(circle at 100% 100%, rgba(59,139,255,.25), transparent 45%),
-      linear-gradient(160deg, var(--bg1), var(--bg2));
-    color:var(--text);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    min-height:100vh;
-    padding:20px;
+      radial-gradient(circle at 15% 0%,rgba(0,194,255,.25),transparent 45%),
+      radial-gradient(circle at 100% 100%,rgba(59,139,255,.25),transparent 45%),
+      linear-gradient(160deg,var(--bg1),var(--bg2));
+    color:var(--text);display:flex;align-items:center;justify-content:center;
+    min-height:100vh;padding:20px;
   }
-
   .slide{
-    width:920px;
-    max-width:96vw;
-    aspect-ratio:16/9;
-    background:linear-gradient(165deg, var(--card), var(--card2));
+    width:920px;max-width:96vw;aspect-ratio:16/9;
+    background:linear-gradient(165deg,var(--card),var(--card2));
     border-radius:28px;
-    box-shadow:0 24px 70px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.08), var(--glow);
-    padding:26px 34px;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
+    box-shadow:0 24px 70px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.08),var(--glow);
+    padding:14px 34px;position:relative;overflow:hidden;display:flex;flex-direction:column;
   }
   .slide::before{
-    content:'';
-    position:absolute;
-    top:-80px; right:-80px;
-    width:220px; height:220px;
-    background:radial-gradient(circle, rgba(0,194,255,.3), transparent 70%);
-    pointer-events:none;
+    content:'';position:absolute;top:-80px;right:-80px;width:220px;height:220px;
+    background:radial-gradient(circle,rgba(0,194,255,.3),transparent 70%);pointer-events:none;
   }
-
-  .top-bar{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    z-index:1;
-    position:relative;
-  }
-  .game-title{
-    font-size:20px;
-    font-weight:800;
-    letter-spacing:.5px;
-  }
-  .mode-row{
-    display:flex;
-    gap:8px;
-    margin-top:8px;
-  }
+  .top-bar{display:flex;justify-content:space-between;align-items:flex-start;z-index:1;position:relative;}
+  .game-title{font-size:20px;font-weight:800;letter-spacing:.5px;}
+  .mode-row{display:flex;gap:8px;margin-top:5px;}
   .mode-btn{
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.15);
-    color:var(--text-dim);
-    font-size:11px;
-    font-weight:700;
-    padding:5px 12px;
-    border-radius:10px;
-    cursor:pointer;
-    transition:.2s;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+    color:var(--text-dim);font-size:11px;font-weight:700;padding:5px 12px;
+    border-radius:10px;cursor:pointer;transition:.2s;
   }
-  .mode-btn:hover{ background:rgba(255,255,255,.14); }
+  .mode-btn:hover{background:rgba(255,255,255,.14);}
   .mode-btn.active{
-    background:linear-gradient(135deg, var(--accent), var(--accent2));
-    color:#06204f;
-    border-color:transparent;
-    box-shadow:0 4px 12px rgba(0,194,255,.4);
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#06204f;border-color:transparent;box-shadow:0 4px 12px rgba(0,194,255,.4);
   }
-
-  .timer-wrap{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:6px;
-  }
+  .timer-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;}
   .timer{
-    width:54px;height:54px;
-    border-radius:50%;
-    background:#0a1c4d;
+    width:54px;height:54px;border-radius:50%;background:#0a1c4d;
     display:flex;align-items:center;justify-content:center;
-    font-size:17px;font-weight:800;
-    color:var(--accent);
-    box-shadow:0 0 0 3px rgba(0,194,255,.35), 0 0 14px rgba(0,194,255,.3);
+    font-size:17px;font-weight:800;color:var(--accent);
+    box-shadow:0 0 0 3px rgba(0,194,255,.35),0 0 14px rgba(0,194,255,.3);
   }
-  .timer.low{ color:#ff5c7a; box-shadow:0 0 0 3px rgba(255,92,122,.35), 0 0 14px rgba(255,92,122,.3);}
+  .timer.low{color:#ff5c7a;box-shadow:0 0 0 3px rgba(255,92,122,.35),0 0 14px rgba(255,92,122,.3);}
   .pause-btn{
-    width:34px;height:24px;
-    border-radius:8px;
-    background:rgba(255,255,255,.12);
-    border:none;
-    color:var(--text);
-    font-size:13px;
-    letter-spacing:2px;
-    cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
+    width:34px;height:24px;border-radius:8px;background:rgba(255,255,255,.12);
+    border:none;color:var(--text);font-size:13px;letter-spacing:2px;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
   }
   .pause-btn:hover{background:rgba(255,255,255,.22);}
-
-  .body-row{
-    flex:1;
-    display:flex;
-    gap:28px;
-    margin-top:16px;
-    z-index:1;
-    position:relative;
-  }
-
+  .body-row{flex:1;display:flex;gap:28px;margin-top:10px;z-index:1;position:relative;}
   .left-col{
-    flex:1.1;
-    background:linear-gradient(160deg, var(--plate-soft), var(--plate));
-    border-radius:20px;
-    padding:18px 16px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 8px 20px rgba(0,0,0,.2);
+    flex:1.1;background:linear-gradient(160deg,var(--plate-soft),var(--plate));
+    border-radius:20px;padding:18px 16px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 8px 20px rgba(0,0,0,.2);
   }
-  .emoji-row{
-    font-size:54px;
-    letter-spacing:14px;
-    filter:drop-shadow(0 4px 10px rgba(0,0,0,.3));
-  }
-  .hint-row{
-    display:flex;
-    align-items:center;
-    gap:16px;
-    margin-top:20px;
-  }
+  .emoji-row{font-size:54px;letter-spacing:14px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.3));}
+  .hint-row{display:flex;align-items:center;gap:16px;margin-top:20px;}
   .hint-slot{
-    width:78px;height:58px;
-    border-radius:14px;
-    background:var(--card2);
-    display:flex;align-items:center;justify-content:center;
-    font-size:28px;
-    position:relative;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.1);
-    transition:.4s;
-    overflow:hidden;
+    width:78px;height:58px;border-radius:14px;background:var(--card2);
+    display:flex;align-items:center;justify-content:center;font-size:28px;
+    position:relative;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);
+    transition:.4s;overflow:hidden;
   }
-  .hint-slot .ghost-letter{
-    position:absolute;
-    font-size:24px;
-    font-weight:800;
-    color:rgba(255,255,255,.18);
-  }
-  .hint-slot .emoji-content{
-    opacity:0;
-    transform:scale(.5);
-    transition:.4s;
-  }
+  .hint-slot .ghost-letter{position:absolute;font-size:24px;font-weight:800;color:rgba(255,255,255,.18);}
+  .hint-slot .emoji-content{opacity:0;transform:scale(.5);transition:.4s;}
   .hint-slot.revealed{
-    background:linear-gradient(160deg, var(--plate-soft), var(--plate));
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.18), 0 0 14px rgba(0,194,255,.25);
+    background:linear-gradient(160deg,var(--plate-soft),var(--plate));
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 0 14px rgba(0,194,255,.25);
   }
   .hint-slot.revealed .ghost-letter{opacity:0;}
-  .hint-slot.revealed .emoji-content{opacity:1; transform:scale(1);}
-
+  .hint-slot.revealed .emoji-content{opacity:1;transform:scale(1);}
   .hint-btn{
-    background:linear-gradient(135deg, var(--accent), var(--accent2));
-    border:none;
-    color:#06204f;
-    font-size:13px;
-    font-weight:800;
-    padding:11px 16px;
-    border-radius:14px;
-    cursor:pointer;
-    box-shadow:0 6px 16px rgba(0,194,255,.45);
-    white-space:nowrap;
-    transition:.2s;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    border:none;color:#06204f;font-size:13px;font-weight:800;
+    padding:11px 16px;border-radius:14px;cursor:pointer;
+    box-shadow:0 6px 16px rgba(0,194,255,.45);white-space:nowrap;transition:.2s;
   }
-  .hint-btn:disabled{ opacity:.4; cursor:default; box-shadow:none; }
-  .hint-btn:not(:disabled):hover{ transform:translateY(-1px) scale(1.03); }
-
-  .right-col{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    gap:14px;
-  }
-
+  .hint-btn:disabled{opacity:.4;cursor:default;box-shadow:none;}
+  .hint-btn:not(:disabled):hover{transform:translateY(-1px) scale(1.03);}
+  .right-col{flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;}
   .name-plate{
-    background:linear-gradient(160deg, var(--plate-soft), var(--plate));
-    border-radius:18px;
-    padding:20px 18px;
-    text-align:center;
-    cursor:pointer;
-    position:relative;
-    overflow:hidden;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.1);
-    transition:.3s;
+    background:linear-gradient(160deg,var(--plate-soft),var(--plate));
+    border-radius:18px;padding:20px 18px;text-align:center;cursor:pointer;
+    position:relative;overflow:hidden;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);transition:.3s;
+    /* กำหนดความสูงขั้นต่ำไว้ กล่องไม่ยุบ */
+    min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;
   }
-  .name-plate:hover{ box-shadow: inset 0 0 0 1px rgba(255,255,255,.2), 0 0 16px rgba(0,194,255,.3); }
-  .name-plate .ghost{
-    font-size:12px;
-    letter-spacing:3px;
-    color:rgba(255,255,255,.25);
-    text-transform:uppercase;
-    font-weight:700;
-  }
-  .name-plate .thai-name{
-    font-size:24px;
-    font-weight:800;
-    margin-top:8px;
-    opacity:0;
-    transition:.3s;
-  }
-  .name-plate .eng-name{
-    font-size:13px;
-    color:var(--text-dim);
-    margin-top:4px;
-    opacity:0;
-    transition:.3s;
-  }
-  .name-plate.revealed{ box-shadow: inset 0 0 0 1px rgba(255,255,255,.2), 0 0 20px rgba(0,194,255,.35); }
-  .name-plate.revealed .ghost{opacity:0; height:0; overflow:hidden;}
-  .name-plate.revealed .thai-name,
-  .name-plate.revealed .eng-name{opacity:1;}
-  .name-plate .tap-hint{
-    font-size:10px;
-    color:var(--text-dim);
-    margin-top:10px;
-    opacity:.7;
-  }
+  .name-plate:hover{box-shadow:inset 0 0 0 1px rgba(255,255,255,.2),0 0 16px rgba(0,194,255,.3);}
+  .name-plate .ghost{font-size:12px;letter-spacing:3px;color:rgba(255,255,255,.25);text-transform:uppercase;font-weight:700;}
+  .name-plate .thai-name{font-size:24px;font-weight:800;margin-top:5px;opacity:0;transition:opacity .3s;visibility:hidden;}
+  .name-plate .eng-name{font-size:13px;color:var(--text-dim);margin-top:4px;opacity:0;transition:opacity .3s;visibility:hidden;}
+  .name-plate.revealed{box-shadow:inset 0 0 0 1px rgba(255,255,255,.2),0 0 20px rgba(0,194,255,.35);}
+  .name-plate.revealed .ghost{opacity:0;visibility:hidden;}
+  .name-plate.revealed .thai-name,.name-plate.revealed .eng-name{opacity:1;visibility:visible;}
+  .name-plate .tap-hint{font-size:10px;color:var(--text-dim);margin-top:10px;opacity:.7;}
   .name-plate.revealed .tap-hint{display:none;}
-
-  .actors-block{ text-align:center; }
-  .actors-label{
-    font-size:10px;
-    color:var(--text-dim);
-    letter-spacing:1px;
-    opacity:.6;
-    font-weight:700;
-    margin-bottom:4px;
-  }
+  .actors-block{text-align:center;min-height:36px;}
+  .actors-label{font-size:10px;color:var(--text-dim);letter-spacing:1px;opacity:.6;font-weight:700;margin-bottom:4px;}
   .actors{
-    font-size:13px;
-    color:var(--text-dim);
-    line-height:1.5;
-    padding:0 6px;
-    filter:blur(5px);
-    opacity:.5;
-    transition:filter .4s, opacity .4s;
-    user-select:none;
+    font-size:13px;color:var(--text-dim);line-height:1.5;padding:0 6px;
+    filter:blur(5px);opacity:.5;transition:filter .4s,opacity .4s;
+    user-select:none;min-height:20px;
   }
-  .actors.revealed{ filter:blur(0); opacity:1; user-select:text; }
-
-  .bottom-bar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:18px;
-    z-index:1;
-    position:relative;
-  }
-
-  .progress-counter{
-    font-size:15px;
-    font-weight:700;
-    color:var(--text-dim);
-    display:flex;
-    align-items:baseline;
-    gap:2px;
-  }
-  .progress-counter .cur{
-    font-size:26px;
-    font-weight:800;
-    color:var(--accent);
-    text-shadow:0 0 12px rgba(0,194,255,.55);
-    transition:all .2s;
-  }
-  .progress-counter .sep{
-    font-size:18px;
-    opacity:.35;
-    margin:0 3px;
-  }
-  .progress-counter .total{
-    opacity:.4;
-  }
-
+  .actors.revealed{filter:blur(0);opacity:1;user-select:text;}
+  .bottom-bar{display:flex;justify-content:space-between;align-items:center;margin-top:10px;z-index:1;position:relative;}
+  .progress-counter{font-size:15px;font-weight:700;color:var(--text-dim);display:flex;align-items:baseline;gap:2px;}
+  .progress-counter .cur{font-size:26px;font-weight:800;color:var(--accent);text-shadow:0 0 12px rgba(0,194,255,.55);transition:all .2s;}
+  .progress-counter .sep{font-size:18px;opacity:.35;margin:0 3px;}
+  .progress-counter .total{opacity:.4;}
   .next-btn{
-    width:54px;height:54px;
-    border-radius:16px;
-    background:linear-gradient(135deg, var(--green), var(--green-dark));
-    border:none;
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer;
-    box-shadow:0 8px 18px rgba(25,224,138,.45);
-    transition:.2s;
+    width:54px;height:54px;border-radius:16px;
+    background:linear-gradient(135deg,var(--green),var(--green-dark));
+    border:none;display:flex;align-items:center;justify-content:center;
+    cursor:pointer;box-shadow:0 8px 18px rgba(25,224,138,.45);transition:.2s;
   }
-  .next-btn:hover{ transform:translateX(3px) scale(1.05); }
-  .next-btn svg{ width:24px; height:24px; }
-
-  @media (max-width:720px){
-    .slide{ aspect-ratio:auto; padding:18px; }
-    .body-row{ flex-direction:column; }
-  }
+  .next-btn:hover{transform:translateX(3px) scale(1.05);}
+  .next-btn svg{width:24px;height:24px;}
+  @media(max-width:720px){.slide{aspect-ratio:auto;padding:18px;}.body-row{flex-direction:column;}}
 </style>
 </head>
 <body>
-
 <div class="slide" id="slide">
   <div class="top-bar">
     <div>
@@ -342,28 +149,20 @@
       <button class="pause-btn" id="pauseBtn">❚❚</button>
     </div>
   </div>
-
   <div class="body-row">
     <div class="left-col">
       <div class="emoji-row" id="mainEmoji"></div>
       <div class="hint-row">
-        <div class="hint-slot" id="slotA">
-          <span class="ghost-letter">A</span>
-          <span class="emoji-content" id="emojiA"></span>
-        </div>
+        <div class="hint-slot" id="slotA"><span class="ghost-letter">A</span><span class="emoji-content" id="emojiA"></span></div>
         <button class="hint-btn" id="hintBtn">💡 ใบ้</button>
-        <div class="hint-slot" id="slotB">
-          <span class="ghost-letter">B</span>
-          <span class="emoji-content" id="emojiB"></span>
-        </div>
+        <div class="hint-slot" id="slotB"><span class="ghost-letter">B</span><span class="emoji-content" id="emojiB"></span></div>
       </div>
     </div>
-
     <div class="right-col">
       <div class="name-plate" id="namePlate">
         <div class="ghost">Series Name</div>
-        <div class="thai-name" id="thaiName"></div>
-        <div class="eng-name" id="engName"></div>
+        <div class="thai-name" id="thaiName">​</div>
+        <div class="eng-name" id="engName">​</div>
         <div class="tap-hint">แตะเพื่อเฉลย</div>
       </div>
       <div class="actors-block">
@@ -372,458 +171,166 @@
       </div>
     </div>
   </div>
-
   <div class="bottom-bar">
     <div class="progress-counter">
       <span class="cur" id="curNum">1</span>
       <span class="sep">/</span>
-      <span class="total" id="totalNum">6</span>
+      <span class="total" id="totalNum">32</span>
     </div>
-    <button class="next-btn" id="nextBtn" title="ข้อถัดไป (สุ่ม)">
+    <button class="next-btn" id="nextBtn">
       <svg viewBox="0 0 24 24" fill="none">
         <path d="M9 6L15 12L9 18" stroke="#06204f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
   </div>
 </div>
-
 <script>
-/* ============================================================
-   วิธีเพิ่มซีรีส์ใหม่:
-   เติม object ใหม่ลงใน array "seriesData" ด้านล่าง ตามรูปแบบนี้:
-
-   {
-     main: ["emoji1","emoji2","emoji3"],   // อีโมจิเปิดเผย 3 ตัว
-     hidden: ["emojiA","emojiB"],          // อีโมจิใบ้ A และ B
-     thai: "ชื่อซีรีส์ภาษาไทย",
-     eng: "English Series Name",
-     actors: "นักแสดงหลัก, นักแสดงรอง, ..."
-   }
-
-   แล้วคั่นด้วย comma กับรายการก่อนหน้า ไม่ต้องแก้ส่วนอื่นของโค้ด
-   ระบบจะสุ่มลำดับการ์ดให้เองทุกครั้งที่เล่นครบรอบ
-   ============================================================ */
-
 const seriesData = [
-  {
-    main: ["💸","🔫","📷"],
-    hidden: ["💖","🍑"],
-    thai: "มีสติหน่อยคุณธีร์",
-    eng: "Me and Thee Series",
-    actors: "ปอนด์ภูวิน, วิลเลี่ยมเอส, เพิร์ธแซนต้า, บอนนี่"
+  { main:["💸","🔫","📷"],
+   hidden:["💖","🍑"],
+   thai:"มีสติหน่อยคุณธีร์",
+   eng:"Me and Thee Series",
+   actors:"ปอนด์ภูวิน, วิลเลี่ยมเอส, เพิร์ธแซนต้า, บอนนี่"
   },
-  {
-    main: ["👔","😡","📢"],
-    hidden: ["🍼","🌸"],
-    thai: "พี่ว้ากตัวร้ายกับนายปีหนึ่ง",
-    eng: "Sotus",
-    actors: "คริส, สิงโต"
-  },
-  {
-    main: ["📝","😈","🙊"],
-    hidden: ["📼","🎁"],
-    thai: "เด็กนักเรียนพลังกิฟต์",
-    eng: "The Gifted Series",
-    actors: "นนน, ชิม่อน, ซิง, กัน, แจน, เฟียต, ลิลลี่, ปุยเมฆ, เอเจ, เจเจ, ภูวิน"
-  },
-  {
-    main: ["🦋","🪢","🛵"],
-    hidden: ["👹","🍃"],
-    thai: "อู",
-    eng: "WU",
-    actors: "สกาย, นานิ"
-  },
-  {
-    main: ["🌻","🌈","🏸"],
-    hidden: ["🌄","🦯"],
-    thai: "ภาพนายไม่เคยลืม",
-    eng: "Last Twilight",
-    actors: "จิมมี่ซี, มาร์คภาคิน, น้ำตาล"
-  },
-  {
-    main: ["🤬","👨🏻‍🏫","👕"],
-    hidden: ["🌳","✨"],
-    thai: "นิทานพันดาว",
-    eng: "1000 stars",
-    actors: "เอิร์ทมิกซ์, อ้าย"
-  },
-  {
-    main: ["☔️","🦁","✉️"],
-    hidden: ["🧒🏻","👨🏻‍🏫"],
-    thai: "รักครูเท่าโลกเลย",
-    eng: "Love You Teacher",
-    actors: "เพิร์ธแซนต้า, แซมมี่, เค"
-  },
-  {
-    main: ["🐣","🍜","🏕️"],
-    hidden: ["💔","💍"],
-    thai: "รักจริงหลังแต่ง",
-    eng: "My Romance Scammer",
-    actors: "จูเนียร์มาร์ค, โอห์มปูน"
-  },
-  {
-    main: ["🥹","🪣","🎓"],
-    hidden: ["😽","🐈"],
-    thai: "เปย์รักด้วยแมวเลี้ยง",
-    eng: "Cat For Cash",
-    actors: "เฟิร์สข้าวตัง, สตางค์, เอเจ, เกรท, วินนี่"
-  },
-  {
-    main: ["🫧","🥓","⏳"],
-    hidden: ["🌊","🌍"],
-    thai: "รักสลับโลก",
-    eng: "Vice Versa",
-    actors: "จิมมี่ซี"
-  },
-  {
-    main: ["🫂","👨🏻‍💻","♥️"],
-    hidden: ["💻","🥃"],
-    thai: "ภาวะรักคนหมดไฟ",
-    eng: "Burnout Syndrome",
-    actors: "ออฟกัน, ดิว, เอมี่, โต๋"
-  },
-  {
-    main: ["🤬","🪡","🤪"],
-    hidden: ["📔","🏎️"],
-    thai: "ไหนใครว่าพวกมันไม่ถูกกัน",
-    eng: "Head 2 Head",
-    actors: "ซีคีน, เซิร์ฟจาว่า"
-  },
-  {
-    main: ["🩴","🌿","🛶"],
-    hidden: ["🫅🏻","🌅"],
-    thai: "ผมเจอเจ้าชายบนชายหาด",
-    eng: "That Summer",
-    actors: "วินนี่สตางค์, ม่อนริว"
-  },
-  {
-    main: ["🦺","🪑","🐶"],
-    hidden: ["🛵","⚔️"],
-    thai: "มิตรภาพคราบศัตรู",
-    eng: "High School Frenemy",
-    actors: "สกายนานิ, และมากมาย"
-  },
-  {
-    main: ["🍝","💉","🌫️"],
-    hidden: ["🪐","🗓️"],
-    thai: "ลีพเดย์ วันแก้ตาย",
-    eng: "Leap Day",
-    actors: "ปอนด์, กัน, ดิว, ป่าน"
-  },
-  {
-    main: ["🩸","✝️","🍾"],
-    hidden: ["🚍","🪄"],
-    thai: "ทำนายทายทัพ",
-    eng: "My Magic Prophecy",
-    actors: "จิมมี่ซี, เซฟฟรัง, เอแคลร์, นัท, จูเนียร์, บุ๊ค"
-  },
-  {
-    main: ["👁️","☕️","🛋️"],
-    hidden: ["🎤","🟠"],
-    thai: "เทมโป้",
-    eng: "ThamePo Heart That Skip a Beat",
-    actors: "วิลเลี่ยมเอส, เลโก้ นัท ฮง ตุ้ย"
-  },
-  {
-    main: ["🩹","💡","🥛"],
-    hidden: ["⚙️","👼🏻"],
-    thai: "สายรหัสเทวดา",
-    eng: "Perfect 10 Liner",
-    actors: "ฟอสบุ๊ค, เพิร์ธแซนต้า, จูเนียร์มาร์ค"
-  },
-  {
-    main: ["🐢","🎢","🕰️"],
-    hidden: ["🔮","🤵🏻"],
-    thai: "บทกวีของปีแสง",
-    eng: "My Favorite",
-    actors: "กวิน, คริส, อ้าย"
-  },
-  {
-    main: ["🥪","🫨","🔫"],
-    hidden: ["👻","🏡"],
-    thai: "บ้านหลอน On Sell",
-    eng: "Peaceful Property",
-    actors: "เตนิว, มุก, แจนเฮ"
-  },
-  {
-    main: ["🤧","🍼","🐧"],
-    hidden: ["🎨","⚙️"],
-    thai: "คือเรารักกัน",
-    eng: "We Are",
-    actors: "ปอนด์ภูวินทร์, วินนี่สตางค์, อู่บูม, มาร์คปูน"
-  },
-  {
-    main: ["🍚","🖼️","🚇"],
-    hidden: ["🧸","🥚"],
-    thai: "แค่ที่แกง",
-    eng: "Only Boo",
-    actors: "ซีคีน, อั๋นอชิ"
-  },
-  {
-    main: ["🖊️","💕","⚽️"],
-    hidden: ["🪄","🍒"],
-    thai: "30 ยังซิง",
-    eng: "Cherry Magic",
-    actors: "เตนิว, ซิงแจน"
-  },
-  {
-    main: ["🤓","⏰","🍪"],
-    hidden: ["🍻","❤️‍🔥"],
-    thai: "เพื่อนต้องห้าม",
-    eng: "Only Friends",
-    actors: "ฟอสบุ๊ค, เฟิร์สข้าวตัง, นีโอ มาร์ค"
-  },
-  {
-    main: ["☎️","🎹","🍎"],
-    hidden: ["🖼️","⛪️"],
-    thai: "เด็กชายไม่ได้ไปสวรรค์",
-    eng: "Ticket to Heaven",
-    actors: "เจมีไนน์โฟร์ท, อชิ"
-  },
-  {
-    main: ["❤️‍🔥","🐰","🩳"],
-    hidden: ["🐕","🛫"],
-    thai: "หมาเห่าเครื่องบิน",
-    eng: "A Dog and a Plane",
-    actors: "เตนิว, ม่อนริว, กระปุก"
-  },
-  {
-    main: ["📊","🏫","📞"],
-    hidden: ["♦️","🎲"],
-    thai: "เกมทอยทะลุมิติ",
-    eng: "The Dark Dice",
-    actors: "เจมีไนน์, พรีม ,และอีกมากมาย"
-  },
-  {
-    main: ["💍","🥀","📺"],
-    hidden: ["🏆","💃🏻"],
-    thai: "บุหงาหมื่นภมร",
-    eng: "Enigma Black Stage",
-    actors: "วิน, น้ำตาล , จิงจิง, เต้ย"
-  },
-  {
-    main: ["😇","🍃","💚"],
-    hidden: ["💔","🌞"],
-    thai: "บริษัทลดรักเลิก",
-    eng: "Break Up Service",
-    actors: "ออฟ, โจริญ"
-  },
-  {
-    main: ["🦋","🌝","👰🏻‍♀️"],
-    hidden: ["🪄","🌘"],
-    thai: "พิพิธภัณฑ์รัตติกาล",
-    eng: "Midnight Museum",
-    actors: "ต่อ, กัน, น้ำตาล, เฟย"
-  },
-  {
-    main: ["🍚","🤟🏻","🍻"],
-    hidden: ["🐓","🌕"],
-    thai: "พระจันทร์มันไก่",
-    eng: "Moonlight Chicken",
-    actors: "เอิร์ทมิกซ์, เจมีไนน์โฟร์ท, เฟิร์สข้าวตัง"
-  },
-  {
-    main: ["🎼","🥳","☔️"],
-    hidden: ["🐭","🏫"],
-    thai: "แฟนผมเป็นประธานนักเรียน",
-    eng: "My School President",
-    actors: "เจมีไนน์โฟร์ท, วินนี่สตางค์, และอีกมากมาย"
-  }
-
-  
-  
-
-  // ====== ตัวอย่างการเพิ่มซีรีส์ใหม่: เอา // ออกจากบรรทัด comma ด้านล่าง และ block ที่ตามมา แล้วแก้ข้อมูล ======
-  // ,
-  // {
-  //   main: ["🏀","🏫","💌"],
-  //   hidden: ["🎸","🌧️"],
-  //   thai: "ชื่อซีรีส์ที่จะเพิ่ม",
-  //   eng: "Series Name In English",
-  //   actors: "นักแสดง1, นักแสดง2, นักแสดง3"
-  // },
+  { main:["👔","😡","📢"], hidden:["🍼","🌸"], thai:"พี่ว้ากตัวร้ายกับนายปีหนึ่ง", eng:"Sotus", actors:"คริส, สิงโต" },
+  { main:["📝","😈","🙊"], hidden:["📼","🎁"], thai:"เด็กนักเรียนพลังกิฟต์", eng:"The Gifted Series", actors:"นนน, ชิม่อน, ซิง, กัน, แจน, เฟียต, ลิลลี่, ปุยเมฆ, เอเจ, เจเจ, ภูวิน" },
+  { main:["🦋","🪢","🛵"], hidden:["👹","🍃"], thai:"อู", eng:"WU", actors:"สกาย, นานิ" },
+  { main:["🌻","🌈","🏸"], hidden:["🌄","🦯"], thai:"ภาพนายไม่เคยลืม", eng:"Last Twilight", actors:"จิมมี่ซี, มาร์คภาคิน, น้ำตาล" },
+  { main:["🤬","👨🏻‍🏫","👕"], hidden:["🌳","✨"], thai:"นิทานพันดาว", eng:"1000 stars", actors:"เอิร์ทมิกซ์, อ้าย" },
+  { main:["☔️","🦁","✉️"], hidden:["🧒🏻","👨🏻‍🏫"], thai:"รักครูเท่าโลกเลย", eng:"Love You Teacher", actors:"เพิร์ธแซนต้า, แซมมี่, เค" },
+  { main:["🐣","🍜","🏕️"], hidden:["💔","💍"], thai:"รักจริงหลังแต่ง", eng:"My Romance Scammer", actors:"จูเนียร์มาร์ค, โอห์มปูน" },
+  { main:["🥹","🪣","🎓"], hidden:["😽","🐈"], thai:"เปย์รักด้วยแมวเลี้ยง", eng:"Cat For Cash", actors:"เฟิร์สข้าวตัง, สตางค์, เอเจ, เกรท, วินนี่" },
+  { main:["🫧","🥓","⏳"], hidden:["🌊","🌍"], thai:"รักสลับโลก", eng:"Vice Versa", actors:"จิมมี่ซี" },
+  { main:["🫂","👨🏻‍💻","♥️"], hidden:["💻","🥃"], thai:"ภาวะรักคนหมดไฟ", eng:"Burnout Syndrome", actors:"ออฟกัน, ดิว, เอมี่, โต๋" },
+  { main:["🤬","🪡","🤪"], hidden:["📔","🏎️"], thai:"ไหนใครว่าพวกมันไม่ถูกกัน", eng:"Head 2 Head", actors:"ซีคีน, เซิร์ฟจาว่า" },
+  { main:["🩴","🌿","🛶"], hidden:["🫅🏻","🌅"], thai:"ผมเจอเจ้าชายบนชายหาด", eng:"That Summer", actors:"วินนี่สตางค์, ม่อนริว" },
+  { main:["🦺","🪑","🐶"], hidden:["🛵","⚔️"], thai:"มิตรภาพคราบศัตรู", eng:"High School Frenemy", actors:"สกายนานิ, และมากมาย" },
+  { main:["🍝","💉","🌫️"], hidden:["🪐","🗓️"], thai:"ลีพเดย์ วันแก้ตาย", eng:"Leap Day", actors:"ปอนด์, กัน, ดิว, ป่าน" },
+  { main:["🩸","✝️","🍾"], hidden:["🚍","🪄"], thai:"ทำนายทายทัพ", eng:"My Magic Prophecy", actors:"จิมมี่ซี, เซฟฟรัง, เอแคลร์, นัท, จูเนียร์, บุ๊ค" },
+  { main:["👁️","☕️","🛋️"], hidden:["🎤","🟠"], thai:"เทมโป้", eng:"ThamePo Heart That Skip a Beat", actors:"วิลเลี่ยมเอส, เลโก้ นัท ฮง ตุ้ย" },
+  { main:["🩹","💡","🥛"], hidden:["⚙️","👼🏻"], thai:"สายรหัสเทวดา", eng:"Perfect 10 Liner", actors:"ฟอสบุ๊ค, เพิร์ธแซนต้า, จูเนียร์มาร์ค" },
+  { main:["🐢","🎢","🕰️"], hidden:["🔮","🤵🏻"], thai:"บทกวีของปีแสง", eng:"My Favorite", actors:"กวิน, คริส, อ้าย" },
+  { main:["🥪","🫨","🔫"], hidden:["👻","🏡"], thai:"บ้านหลอน On Sell", eng:"Peaceful Property", actors:"เตนิว, มุก, แจนเฮ" },
+  { main:["🤧","🍼","🐧"], hidden:["🎨","⚙️"], thai:"คือเรารักกัน", eng:"We Are", actors:"ปอนด์ภูวินทร์, วินนี่สตางค์, อู่บูม, มาร์คปูน" },
+  { main:["🍚","🖼️","🚇"], hidden:["🧸","🥚"], thai:"แค่ที่แกง", eng:"Only Boo", actors:"ซีคีน, อั๋นอชิ" },
+  { main:["🖊️","💕","⚽️"], hidden:["🪄","🍒"], thai:"30 ยังซิง", eng:"Cherry Magic", actors:"เตนิว, ซิงแจน" },
+  { main:["🤓","⏰","🍪"], hidden:["🍻","❤️‍🔥"], thai:"เพื่อนต้องห้าม", eng:"Only Friends", actors:"ฟอสบุ๊ค, เฟิร์สข้าวตัง, นีโอ มาร์ค" },
+  { main:["☎️","🎹","🍎"], hidden:["🖼️","⛪️"], thai:"เด็กชายไม่ได้ไปสวรรค์", eng:"Ticket to Heaven", actors:"เจมีไนน์โฟร์ท, อชิ" },
+  { main:["❤️‍🔥","🐰","🩳"], hidden:["🐕","🛫"], thai:"หมาเห่าเครื่องบิน", eng:"A Dog and a Plane", actors:"เตนิว, ม่อนริว, กระปุก" },
+  { main:["📊","🏫","📞"], hidden:["♦️","🎲"], thai:"เกมทอยทะลุมิติ", eng:"The Dark Dice", actors:"เจมีไนน์, พรีม, และอีกมากมาย" },
+  { main:["💍","🥀","📺"], hidden:["🏆","💃🏻"], thai:"บุหงาหมื่นภมร", eng:"Enigma Black Stage", actors:"วิน, น้ำตาล, จิงจิง, เต้ย" },
+  { main:["😇","🍃","💚"], hidden:["💔","🌞"], thai:"บริษัทลดรักเลิก", eng:"Break Up Service", actors:"ออฟ, โจริญ" },
+  { main:["🦋","🌝","👰🏻‍♀️"], hidden:["🪄","🌘"], thai:"พิพิธภัณฑ์รัตติกาล", eng:"Midnight Museum", actors:"ต่อ, กัน, น้ำตาล, เฟย" },
+  { main:["🍚","🤟🏻","🍻"], hidden:["🐓","🌕"], thai:"พระจันทร์มันไก่", eng:"Moonlight Chicken", actors:"เอิร์ทมิกซ์, เจมีไนน์โฟร์ท, เฟิร์สข้าวตัง" },
+  { main:["🎼","🥳","☔️"], hidden:["🐭","🏫"], thai:"แฟนผมเป็นประธานนักเรียน", eng:"My School President", actors:"เจมีไนน์โฟร์ท, วินนี่สตางค์, และอีกมากมาย" }
 ];
 
-let order = [];
-let orderPos = 0;
-let current = 0;
-let selectedTime = 60;
-let timeLeft = 60;
-let timerInterval = null;
-let paused = false;
-let hintStage = 0;
-let nameRevealed = false;
-let globalCount = 1; // นับรวมข้ามรอบ
+let order=[],orderPos=0,current=0,selectedTime=60,timeLeft=60;
+let timerInterval=null,paused=false,hintStage=0,nameRevealed=false,globalCount=1;
 
-const mainEmojiEl = document.getElementById('mainEmoji');
-const emojiAEl = document.getElementById('emojiA');
-const emojiBEl = document.getElementById('emojiB');
-const slotA = document.getElementById('slotA');
-const slotB = document.getElementById('slotB');
-const hintBtn = document.getElementById('hintBtn');
-const namePlate = document.getElementById('namePlate');
-const thaiNameEl = document.getElementById('thaiName');
-const engNameEl = document.getElementById('engName');
-const actorsEl = document.getElementById('actors');
-const timerEl = document.getElementById('timer');
-const pauseBtn = document.getElementById('pauseBtn');
-const nextBtn = document.getElementById('nextBtn');
-const slideEl = document.getElementById('slide');
-const modeRow = document.getElementById('modeRow');
-const modeBtns = modeRow.querySelectorAll('.mode-btn');
-const curNumEl = document.getElementById('curNum');
-const totalNumEl = document.getElementById('totalNum');
+const mainEmojiEl=document.getElementById('mainEmoji');
+const emojiAEl=document.getElementById('emojiA');
+const emojiBEl=document.getElementById('emojiB');
+const slotA=document.getElementById('slotA');
+const slotB=document.getElementById('slotB');
+const hintBtn=document.getElementById('hintBtn');
+const namePlate=document.getElementById('namePlate');
+const thaiNameEl=document.getElementById('thaiName');
+const engNameEl=document.getElementById('engName');
+const actorsEl=document.getElementById('actors');
+const timerEl=document.getElementById('timer');
+const pauseBtn=document.getElementById('pauseBtn');
+const nextBtn=document.getElementById('nextBtn');
+const slideEl=document.getElementById('slide');
+const modeRow=document.getElementById('modeRow');
+const modeBtns=modeRow.querySelectorAll('.mode-btn');
+const curNumEl=document.getElementById('curNum');
+const totalNumEl=document.getElementById('totalNum');
 
-function setActiveModeBtn(){
-  modeBtns.forEach(b => b.classList.toggle('active', Number(b.dataset.time) === selectedTime));
-}
-modeBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    selectedTime = Number(btn.dataset.time);
-    setActiveModeBtn();
-    resetTimer();
-  });
-});
+function setActiveModeBtn(){ modeBtns.forEach(b=>b.classList.toggle('active',Number(b.dataset.time)===selectedTime)); }
+modeBtns.forEach(btn=>btn.addEventListener('click',()=>{ selectedTime=Number(btn.dataset.time); setActiveModeBtn(); resetTimer(); }));
 modeBtns[0].classList.add('active');
 
-function shuffle(arr){
-  const a = [...arr];
-  for(let i = a.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function buildOrder(){
-  order = shuffle(seriesData.map((_, i) => i));
-  orderPos = 0;
-  current = order[0];
-}
-
-function updateCounter(){
-  curNumEl.textContent = globalCount;
-  totalNumEl.textContent = seriesData.length;
-}
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]; } return a; }
+function buildOrder(){ order=shuffle(seriesData.map((_,i)=>i)); orderPos=0; current=order[0]; }
+function updateCounter(){ curNumEl.textContent=globalCount; totalNumEl.textContent=seriesData.length; }
 
 function loadRound(){
-  const item = seriesData[current];
-  mainEmojiEl.textContent = item.main.join(' ');
-  emojiAEl.textContent = item.hidden[0];
-  emojiBEl.textContent = item.hidden[1];
-  thaiNameEl.textContent = item.thai;
-  engNameEl.textContent = item.eng;
-  actorsEl.textContent = item.actors;
+  const item=seriesData[current];
 
+  // emoji อัปเดตทันที ไม่ delay
+  mainEmojiEl.textContent=item.main.join(' ');
+  emojiAEl.textContent=item.hidden[0];
+  emojiBEl.textContent=item.hidden[1];
+
+  // ปิดป้ายก่อน แล้วค่อยใส่ชื่อใหม่หลัง transition (300ms)
   slotA.classList.remove('revealed');
   slotB.classList.remove('revealed');
   namePlate.classList.remove('revealed');
   actorsEl.classList.remove('revealed');
-  hintStage = 0;
-  nameRevealed = false;
-  hintBtn.disabled = false;
-  hintBtn.textContent = '💡 ใบ้';
+  hintStage=0; nameRevealed=false;
+  hintBtn.disabled=false; hintBtn.textContent='💡 ใบ้';
+
+  setTimeout(()=>{
+    thaiNameEl.textContent=item.thai;
+    engNameEl.textContent=item.eng;
+    actorsEl.textContent=item.actors;
+  },300);
 
   updateCounter();
   resetTimer();
 }
 
-function resetTimer(){
-  clearInterval(timerInterval);
-  timeLeft = selectedTime;
-  paused = false;
-  pauseBtn.textContent = '❚❚';
-  updateTimerDisplay();
-  startTimer();
-}
-
+function resetTimer(){ clearInterval(timerInterval); timeLeft=selectedTime; paused=false; pauseBtn.textContent='❚❚'; updateTimerDisplay(); startTimer(); }
 function startTimer(){
   clearInterval(timerInterval);
-  timerInterval = setInterval(() => {
+  timerInterval=setInterval(()=>{
     if(paused) return;
     timeLeft--;
-    if(timeLeft <= 0){
-      timeLeft = 0;
-      updateTimerDisplay();
-      clearInterval(timerInterval);
-      slotA.classList.add('revealed');
-      slotB.classList.add('revealed');
-      namePlate.classList.add('revealed');
-      actorsEl.classList.add('revealed');
-      hintBtn.disabled = true;
-      return;
+    if(timeLeft<=0){
+      timeLeft=0; updateTimerDisplay(); clearInterval(timerInterval);
+      slotA.classList.add('revealed'); slotB.classList.add('revealed');
+      namePlate.classList.add('revealed'); actorsEl.classList.add('revealed');
+      hintBtn.disabled=true; return;
     }
     updateTimerDisplay();
-  }, 1000);
+  },1000);
 }
+function updateTimerDisplay(){ timerEl.textContent=timeLeft; timerEl.classList.toggle('low',timeLeft<=10); }
 
-function updateTimerDisplay(){
-  timerEl.textContent = timeLeft;
-  timerEl.classList.toggle('low', timeLeft <= 10);
-}
+pauseBtn.addEventListener('click',()=>{ paused=!paused; pauseBtn.textContent=paused?'►':'❚❚'; });
 
-pauseBtn.addEventListener('click', () => {
-  paused = !paused;
-  pauseBtn.textContent = paused ? '►' : '❚❚';
+hintBtn.addEventListener('click',()=>{
+  if(hintStage===0){ slotA.classList.add('revealed'); hintStage=1; hintBtn.textContent='💡 ใบ้ (B)'; }
+  else if(hintStage===1){ slotB.classList.add('revealed'); hintStage=2; hintBtn.disabled=true; hintBtn.textContent='💡 ใบ้หมดแล้ว'; }
 });
 
-hintBtn.addEventListener('click', () => {
-  if(hintStage === 0){
-    slotA.classList.add('revealed');
-    hintStage = 1;
-    hintBtn.textContent = '💡 ใบ้ (B)';
-  } else if(hintStage === 1){
-    slotB.classList.add('revealed');
-    hintStage = 2;
-    hintBtn.disabled = true;
-    hintBtn.textContent = '💡 ใบ้หมดแล้ว';
-  }
-});
-
-namePlate.addEventListener('click', () => {
-  nameRevealed = !nameRevealed;
-  namePlate.classList.toggle('revealed', nameRevealed);
-  actorsEl.classList.toggle('revealed', nameRevealed);
+namePlate.addEventListener('click',()=>{
+  nameRevealed=!nameRevealed;
+  namePlate.classList.toggle('revealed',nameRevealed);
+  actorsEl.classList.toggle('revealed',nameRevealed);
 });
 
 function goNext(){
-  orderPos = (orderPos + 1) % order.length;
-  if(orderPos === 0){
-    buildOrder();
-    globalCount = 1;
-  } else {
-    current = order[orderPos];
-    globalCount++;
-  }
+  orderPos=(orderPos+1)%order.length;
+  if(orderPos===0){ buildOrder(); globalCount=1; }
+  else { current=order[orderPos]; globalCount++; }
   loadRound();
 }
-
 function goPrev(){
-  if(globalCount > 1) globalCount--;
-  orderPos = (orderPos - 1 + order.length) % order.length;
-  current = order[orderPos];
-  loadRound();
+  if(globalCount>1) globalCount--;
+  orderPos=(orderPos-1+order.length)%order.length;
+  current=order[orderPos]; loadRound();
 }
 
-nextBtn.addEventListener('click', goNext);
-
-let touchStartX = 0;
-slideEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
-slideEl.addEventListener('touchend', e => {
-  const diff = e.changedTouches[0].screenX - touchStartX;
-  if(Math.abs(diff) > 50){
-    if(diff < 0) goNext(); else goPrev();
-  }
-});
-
-document.addEventListener('keydown', e => {
-  if(e.key === 'ArrowRight') goNext();
-  else if(e.key === 'ArrowLeft') goPrev();
-});
+nextBtn.addEventListener('click',goNext);
+let touchStartX=0;
+slideEl.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX;});
+slideEl.addEventListener('touchend',e=>{ const diff=e.changedTouches[0].screenX-touchStartX; if(Math.abs(diff)>50){if(diff<0)goNext();else goPrev();} });
+document.addEventListener('keydown',e=>{ if(e.key==='ArrowRight')goNext(); else if(e.key==='ArrowLeft')goPrev(); });
 
 buildOrder();
 loadRound();
 </script>
-
 </body>
 </html>
