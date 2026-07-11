@@ -186,44 +186,231 @@
 </div>
 <script>
 const seriesData = [
-  { main:["💸","🔫","📷"],
-   hidden:["💖","🍑"],
-   thai:"มีสติหน่อยคุณธีร์",
-   eng:"Me and Thee Series",
-   actors:"ปอนด์ภูวิน, วิลเลี่ยมเอส, เพิร์ธแซนต้า, บอนนี่"
-  },
-  { main:["👔","😡","📢"], hidden:["🍼","🌸"], thai:"พี่ว้ากตัวร้ายกับนายปีหนึ่ง", eng:"Sotus", actors:"คริส, สิงโต" },
-  { main:["📝","😈","🙊"], hidden:["📼","🎁"], thai:"เด็กนักเรียนพลังกิฟต์", eng:"The Gifted Series", actors:"นนน, ชิม่อน, ซิง, กัน, แจน, เฟียต, ลิลลี่, ปุยเมฆ, เอเจ, เจเจ, ภูวิน" },
-  { main:["🦋","🪢","🛵"], hidden:["👹","🍃"], thai:"อู", eng:"WU", actors:"สกาย, นานิ" },
-  { main:["🌻","🌈","🏸"], hidden:["🌄","🦯"], thai:"ภาพนายไม่เคยลืม", eng:"Last Twilight", actors:"จิมมี่ซี, มาร์คภาคิน, น้ำตาล" },
-  { main:["🤬","👨🏻‍🏫","👕"], hidden:["🌳","✨"], thai:"นิทานพันดาว", eng:"1000 stars", actors:"เอิร์ทมิกซ์, อ้าย" },
-  { main:["☔️","🦁","✉️"], hidden:["🧒🏻","👨🏻‍🏫"], thai:"รักครูเท่าโลกเลย", eng:"Love You Teacher", actors:"เพิร์ธแซนต้า, แซมมี่, เค" },
-  { main:["🐣","🍜","🏕️"], hidden:["💔","💍"], thai:"รักจริงหลังแต่ง", eng:"My Romance Scammer", actors:"จูเนียร์มาร์ค, โอห์มปูน" },
-  { main:["🥹","🪣","🎓"], hidden:["😽","🐈"], thai:"เปย์รักด้วยแมวเลี้ยง", eng:"Cat For Cash", actors:"เฟิร์สข้าวตัง, สตางค์, เอเจ, เกรท, วินนี่" },
-  { main:["🫧","🥓","⏳"], hidden:["🌊","🌍"], thai:"รักสลับโลก", eng:"Vice Versa", actors:"จิมมี่ซี" },
-  { main:["🫂","👨🏻‍💻","♥️"], hidden:["💻","🥃"], thai:"ภาวะรักคนหมดไฟ", eng:"Burnout Syndrome", actors:"ออฟกัน, ดิว, เอมี่, โต๋" },
-  { main:["🤬","🪡","🤪"], hidden:["📔","🏎️"], thai:"ไหนใครว่าพวกมันไม่ถูกกัน", eng:"Head 2 Head", actors:"ซีคีน, เซิร์ฟจาว่า" },
-  { main:["🩴","🌿","🛶"], hidden:["🫅🏻","🌅"], thai:"ผมเจอเจ้าชายบนชายหาด", eng:"That Summer", actors:"วินนี่สตางค์, ม่อนริว" },
-  { main:["🦺","🪑","🐶"], hidden:["🛵","⚔️"], thai:"มิตรภาพคราบศัตรู", eng:"High School Frenemy", actors:"สกายนานิ, และมากมาย" },
-  { main:["🍝","💉","🌫️"], hidden:["🪐","🗓️"], thai:"ลีพเดย์ วันแก้ตาย", eng:"Leap Day", actors:"ปอนด์, กัน, ดิว, ป่าน" },
-  { main:["🩸","✝️","🍾"], hidden:["🚍","🪄"], thai:"ทำนายทายทัพ", eng:"My Magic Prophecy", actors:"จิมมี่ซี, เซฟฟรัง, เอแคลร์, นัท, จูเนียร์, บุ๊ค" },
-  { main:["👁️","☕️","🛋️"], hidden:["🎤","🟠"], thai:"เทมโป้", eng:"ThamePo Heart That Skip a Beat", actors:"วิลเลี่ยมเอส, เลโก้ นัท ฮง ตุ้ย" },
-  { main:["🩹","💡","🥛"], hidden:["⚙️","👼🏻"], thai:"สายรหัสเทวดา", eng:"Perfect 10 Liner", actors:"ฟอสบุ๊ค, เพิร์ธแซนต้า, จูเนียร์มาร์ค" },
-  { main:["🐢","🎢","🕰️"], hidden:["🔮","🤵🏻"], thai:"บทกวีของปีแสง", eng:"My Favorite", actors:"กวิน, คริส, อ้าย" },
-  { main:["🥪","🫨","🔫"], hidden:["👻","🏡"], thai:"บ้านหลอน On Sell", eng:"Peaceful Property", actors:"เตนิว, มุก, แจนเฮ" },
-  { main:["🤧","🍼","🐧"], hidden:["🎨","⚙️"], thai:"คือเรารักกัน", eng:"We Are", actors:"ปอนด์ภูวินทร์, วินนี่สตางค์, อู่บูม, มาร์คปูน" },
-  { main:["🍚","🖼️","🚇"], hidden:["🧸","🥚"], thai:"แค่ที่แกง", eng:"Only Boo", actors:"ซีคีน, อั๋นอชิ" },
-  { main:["🖊️","💕","⚽️"], hidden:["🪄","🍒"], thai:"30 ยังซิง", eng:"Cherry Magic", actors:"เตนิว, ซิงแจน" },
-  { main:["🤓","⏰","🍪"], hidden:["🍻","❤️‍🔥"], thai:"เพื่อนต้องห้าม", eng:"Only Friends", actors:"ฟอสบุ๊ค, เฟิร์สข้าวตัง, นีโอ มาร์ค" },
-  { main:["☎️","🎹","🍎"], hidden:["🖼️","⛪️"], thai:"เด็กชายไม่ได้ไปสวรรค์", eng:"Ticket to Heaven", actors:"เจมีไนน์โฟร์ท, อชิ" },
-  { main:["❤️‍🔥","🐰","🩳"], hidden:["🐕","🛫"], thai:"หมาเห่าเครื่องบิน", eng:"A Dog and a Plane", actors:"เตนิว, ม่อนริว, กระปุก" },
-  { main:["📊","🏫","📞"], hidden:["♦️","🎲"], thai:"เกมทอยทะลุมิติ", eng:"The Dark Dice", actors:"เจมีไนน์, พรีม, และอีกมากมาย" },
-  { main:["💍","🥀","📺"], hidden:["🏆","💃🏻"], thai:"บุหงาหมื่นภมร", eng:"Enigma Black Stage", actors:"วิน, น้ำตาล, จิงจิง, เต้ย" },
-  { main:["😇","🍃","💚"], hidden:["💔","🌞"], thai:"บริษัทลดรักเลิก", eng:"Break Up Service", actors:"ออฟ, โจริญ" },
-  { main:["🦋","🌝","👰🏻‍♀️"], hidden:["🪄","🌘"], thai:"พิพิธภัณฑ์รัตติกาล", eng:"Midnight Museum", actors:"ต่อ, กัน, น้ำตาล, เฟย" },
-  { main:["🍚","🤟🏻","🍻"], hidden:["🐓","🌕"], thai:"พระจันทร์มันไก่", eng:"Moonlight Chicken", actors:"เอิร์ทมิกซ์, เจมีไนน์โฟร์ท, เฟิร์สข้าวตัง" },
-  { main:["🎼","🥳","☔️"], hidden:["🐭","🏫"], thai:"แฟนผมเป็นประธานนักเรียน", eng:"My School President", actors:"เจมีไนน์โฟร์ท, วินนี่สตางค์, และอีกมากมาย" }
-];
+{
+  main:["💸","🔫","📷"],
+  hidden:["💖","🍑"],
+  thai:"มีสติหน่อยคุณธีร์",
+  eng:"Me and Thee Series",
+  actors:"ปอนด์ภูวิน, วิลเลี่ยมเอส, เพิร์ธแซนต้า, บอนนี่"
+},
+{
+  main:["👔","😡","📢"],
+  hidden:["🍼","🌸"],
+  thai:"พี่ว้ากตัวร้ายกับนายปีหนึ่ง",
+  eng:"Sotus",
+  actors:"คริส, สิงโต"
+},
+{
+  main:["📝","😈","🙊"],
+  hidden:["📼","🎁"],
+  thai:"เด็กนักเรียนพลังกิฟต์",
+  eng:"The Gifted Series",
+  actors:"นนน, ชิม่อน, ซิง, กัน, แจน, เฟียต, ลิลลี่, ปุยเมฆ, เอเจ, เจเจ, ภูวิน"
+},
+{
+  main:["🦋","🪢","🛵"],
+  hidden:["👹","🍃"],
+  thai:"อู",
+  eng:"WU",
+  actors:"สกาย, นานิ"
+},
+{
+  main:["🌻","🌈","🏸"],
+  hidden:["🌄","🦯"],
+  thai:"ภาพนายไม่เคยลืม",
+  eng:"Last Twilight",
+  actors:"จิมมี่ซี, มาร์คภาคิน, น้ำตาล"
+},
+{
+  main:["🤬","👨🏻‍🏫","👕"],
+  hidden:["🌳","✨"],
+  thai:"นิทานพันดาว",
+  eng:"1000 stars",
+  actors:"เอิร์ทมิกซ์, อ้าย"
+},
+{
+  main:["☔️","🦁","✉️"],
+  hidden:["🧒🏻","👨🏻‍🏫"],
+  thai:"รักครูเท่าโลกเลย",
+  eng:"Love You Teacher",
+  actors:"เพิร์ธแซนต้า, แซมมี่, เค"
+},
+{
+  main:["🐣","🍜","🏕️"],
+  hidden:["💔","💍"],
+  thai:"รักจริงหลังแต่ง",
+  eng:"My Romance Scammer",
+  actors:"จูเนียร์มาร์ค, โอห์มปูน"
+},
+{
+  main:["🥹","🪣","🎓"],
+  hidden:["😽","🐈"],
+  thai:"เปย์รักด้วยแมวเลี้ยง",
+  eng:"Cat For Cash",
+  actors:"เฟิร์สข้าวตัง, สตางค์, เอเจ, เกรท, วินนี่"
+},
+{
+  main:["🫧","🥓","⏳"],
+  hidden:["🌊","🌍"],
+  thai:"รักสลับโลก",
+  eng:"Vice Versa",
+  actors:"จิมมี่ซี"
+},
+{
+  main:["🫂","👨🏻‍💻","♥️"],
+  hidden:["💻","🥃"],
+  thai:"ภาวะรักคนหมดไฟ",
+  eng:"Burnout Syndrome",
+  actors:"ออฟกัน, ดิว, เอมี่, โต๋"
+},
+{
+  main:["🤬","🪡","🤪"],
+  hidden:["📔","🏎️"],
+  thai:"ไหนใครว่าพวกมันไม่ถูกกัน",
+  eng:"Head 2 Head",
+  actors:"ซีคีน, เซิร์ฟจาว่า"
+},
+{
+  main:["🩴","🌿","🛶"],
+  hidden:["🫅🏻","🌅"],
+  thai:"ผมเจอเจ้าชายบนชายหาด",
+  eng:"That Summer",
+  actors:"วินนี่สตางค์, ม่อนริว"
+},
+{
+  main:["🦺","🪑","🐶"],
+  hidden:["🛵","⚔️"],
+  thai:"มิตรภาพคราบศัตรู",
+  eng:"High School Frenemy",
+  actors:"สกายนานิ, และมากมาย"
+},
+{
+  main:["🍝","💉","🌫️"],
+  hidden:["🪐","🗓️"],
+  thai:"ลีพเดย์ วันแก้ตาย",
+  eng:"Leap Day",
+  actors:"ปอนด์, กัน, ดิว, ป่าน"
+},
+{
+  main:["🩸","✝️","🍾"],
+  hidden:["🚍","🪄"],
+  thai:"ทำนายทายทัพ",
+  eng:"My Magic Prophecy",
+  actors:"จิมมี่ซี, เซฟฟรัง, เอแคลร์, นัท, จูเนียร์, บุ๊ค"
+},
+{
+  main:["👁️","☕️","🛋️"],
+  hidden:["🎤","🟠"],
+  thai:"เทมโป้",
+  eng:"ThamePo Heart That Skip a Beat",
+  actors:"วิลเลี่ยมเอส, เลโก้, นัท, ฮง, ตุ้ย"
+},
+{
+  main:["🩹","💡","🥛"],
+  hidden:["⚙️","👼🏻"],
+  thai:"สายรหัสเทวดา",
+  eng:"Perfect 10 Liner",
+  actors:"ฟอสบุ๊ค, เพิร์ธแซนต้า, จูเนียร์มาร์ค"
+},
+{
+  main:["🐢","🎢","🕰️"],
+  hidden:["🔮","🤵🏻"],
+  thai:"บทกวีของปีแสง",
+  eng:"My Favorite",
+  actors:"กวิน, คริส, อ้าย"
+},
+{
+  main:["🥪","🫨","🔫"],
+  hidden:["👻","🏡"],
+  thai:"บ้านหลอน On Sell",
+  eng:"Peaceful Property",
+  actors:"เตนิว, มุก, แจนเฮ"
+},
+{
+  main:["🤧","🍼","🐧"],
+  hidden:["🎨","⚙️"],
+  thai:"คือเรารักกัน",
+  eng:"We Are",
+  actors:"ปอนด์ภูวินทร์, วินนี่สตางค์, อู่บูม, มาร์คปูน"
+},
+{
+  main:["🍚","🖼️","🚇"],
+  hidden:["🧸","🥚"],
+  thai:"แค่ที่แกง",
+  eng:"Only Boo",
+  actors:"ซีคีน, อั๋นอชิ"
+},
+{
+  main:["🖊️","💕","⚽️"],
+  hidden:["🪄","🍒"],
+  thai:"30 ยังซิง",
+  eng:"Cherry Magic",
+  actors:"เตนิว, ซิงแจน"
+},
+{
+  main:["🤓","⏰","🍪"],
+  hidden:["🍻","❤️‍🔥"],
+  thai:"เพื่อนต้องห้าม",
+  eng:"Only Friends",
+  actors:"ฟอสบุ๊ค, เฟิร์สข้าวตัง, นีโอ, มาร์ค"
+},
+{
+  main:["☎️","🎹","🍎"],
+  hidden:["🖼️","⛪️"],
+  thai:"เด็กชายไม่ได้ไปสวรรค์",
+  eng:"Ticket to Heaven",
+  actors:"เจมีไนน์โฟร์ท, อชิ"
+},
+{
+  main:["❤️‍🔥","🐰","🩳"],
+  hidden:["🐕","🛫"],
+  thai:"หมาเห่าเครื่องบิน",
+  eng:"A Dog and a Plane",
+  actors:"เตนิว, ม่อนริว, กระปุก"
+},
+{
+  main:["📊","🏫","📞"],
+  hidden:["♦️","🎲"],
+  thai:"เกมทอยทะลุมิติ",
+  eng:"The Dark Dice",
+  actors:"เจมีไนน์, พรีม, และอีกมากมาย"
+},
+{
+  main:["💍","🥀","📺"],
+  hidden:["🏆","💃🏻"],
+  thai:"บุหงาหมื่นภมร",
+  eng:"Enigma Black Stage",
+  actors:"วิน, น้ำตาล, จิงจิง, เต้ย"
+},
+{
+  main:["😇","🍃","💚"],
+  hidden:["💔","🌞"],
+  thai:"บริษัทลดรักเลิก",
+  eng:"Break Up Service",
+  actors:"ออฟ, โจริญ"
+},
+{
+  main:["🦋","🌝","👰🏻‍♀️"],
+  hidden:["🪄","🌘"],
+  thai:"พิพิธภัณฑ์รัตติกาล",
+  eng:"Midnight Museum",
+  actors:"ต่อ, กัน, น้ำตาล, เฟย"
+},
+{
+  main:["🍚","🤟🏻","🍻"],
+  hidden:["🐓","🌕"],
+  thai:"พระจันทร์มันไก่",
+  eng:"Moonlight Chicken",
+  actors:"เอิร์ทมิกซ์, เจมีไนน์โฟร์ท, เฟิร์สข้าวตัง"
+},
+{
+  main:["🎼","🥳","☔️"],
+  hidden:["🐭","🏫"],
+  thai:"แฟนผมเป็นประธานนักเรียน",
+  eng:"My School President",
+  actors:"เจมีไนน์โฟร์ท, วินนี่สตางค์, และอีกมากมาย"
+}
+  ];
 
 let order=[],orderPos=0,current=0,selectedTime=60,timeLeft=60;
 let timerInterval=null,paused=false,hintStage=0,nameRevealed=false,globalCount=1;
